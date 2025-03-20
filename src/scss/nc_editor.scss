@@ -1,0 +1,82 @@
+
+// ===== Init
+
+@import 'vendors';
+@import 'init';
+
+
+// ===== Bootstrap Utils and CSS Variables
+
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/root";
+
+
+// ===== Custom Helper Classes
+
+@import "00-base/helpers";
+
+
+// ===== Custom Utilities
+
+@import "00-base/utilities";
+
+
+// ===== Custom CSS Variables
+
+@import '00-base/custom-variables';
+
+
+.ck .ck-content {
+  margin: 0; // 1
+  font-family: var(--#{$prefix}body-font-family);
+  @include font-size(var(--#{$prefix}body-font-size));
+  font-weight: var(--#{$prefix}body-font-weight);
+  line-height: var(--#{$prefix}body-line-height);
+  color: var(--#{$prefix}body-color);
+  text-align: var(--#{$prefix}body-text-align);
+  background-color: var(--#{$prefix}body-bg); // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -webkit-tap-highlight-color: rgba($black, 0); // 4
+
+  // ===== Bootstrap
+
+  // Required
+  @import "../../node_modules/bootstrap/scss/reboot";
+
+  // Include any optional Bootstrap modules needed by wysiwyg
+  @import "../../node_modules/bootstrap/scss/type";
+  @import "../../node_modules/bootstrap/scss/images";
+  @import "../../node_modules/bootstrap/scss/grid";
+  @import "../../node_modules/bootstrap/scss/tables";
+  @import "../../node_modules/bootstrap/scss/buttons";
+
+  // Customized Utilities
+  @import "bootstrap-utilities";
+
+
+  // ===== Atoms
+
+  @import '01-atoms/**/*';
+
+
+  // ===== Ckeditor Overrides (achieve a more accurate representation of the final output)
+
+  .table > figcaption {
+    @extend caption;
+    font-size: $font-size-base;
+    caption-side: bottom;
+    margin-top: 0;
+  }
+
+  @extend %list-styles;
+
+
+  // ===== CKEditor Overrides to fix issues in the editable area related to how the CKEditor UI elements render.
+
+  // Fix style inheritance issues related to bootstrap styling for tables breaking
+  // the editor widget UI for the insert before and after buttons.
+  .ck-widget.table .ck-widget__type-around__button svg {
+    padding: 0 !important;
+    color: var(--ck-color-text) !important;
+  }
+}

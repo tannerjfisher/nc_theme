@@ -1,0 +1,22 @@
+{#
+@file
+Menu Dropdown Twig Template for the Hover Style.
+
+This template includes the `menu-dropdown` base component.
+
+Parameters:
+- `type` (string): Determines the interaction style for the dropdown menu.
+  - `'hover'`: The dropdown menu is triggered on hover.
+  - `'toggle'`: The dropdown menu is triggered on click or tap.
+
+Usage examples:
+- Hover Dropdown:
+  {% include 'nc_theme:menu-dropdown' with { type: 'hover' } %}
+
+- Toggle Dropdown:
+  {% include 'nc_theme:menu-dropdown' with { type: 'toggle' } %}
+#}
+
+{% include 'nc_theme:menu-dropdown' with {
+  type: 'hover'
+}%}

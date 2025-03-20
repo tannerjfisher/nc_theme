@@ -6,9 +6,17 @@
     'menu--' ~ derivative_plugin_id|clean_class,
   ]
 %}
+
+{# Set the ID #}
+{% if custom_id is defined %}
+  {% set id = custom_id %}
+{% else %}
+  {% set id = attributes.id %}
+{% endif %}
+
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes, custom_classes)|without('role', 'aria-labelledby') }}>
+<nav id="{{ id }}" role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes, custom_classes)|without('role', 'aria-labelledby', 'id') }}>
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}

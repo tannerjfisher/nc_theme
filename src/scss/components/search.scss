@@ -1,0 +1,39 @@
+
+@import "../init";
+
+// +++++++++ Search results
+
+.view-search {
+
+  // ===== View Header
+
+  .view-header {
+    border-bottom: 1px solid $primary;
+    padding-bottom: map-get($spacers, 6);
+  }
+
+
+  // ===== Results Display Summary
+
+  .display-summary {
+    font-size: .875rem;
+  }
+
+
+  // ===== Empty View
+
+  .view-empty {
+    font-size: 1.25rem;
+  }
+
+
+  // ====== Result Row
+
+  .views-row {
+    padding-bottom: $paragraph-margin-bottom;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-500;
+    }
+  }
+}

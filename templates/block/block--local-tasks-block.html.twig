@@ -1,0 +1,16 @@
+{# extends @bootstrap_barrio/layout/block.html.twig
+/**
+ * @file
+ * Theme override for tabs.
+ */
+#}
+
+{{ attach_library('nc_theme/local_tasks') }}
+
+{% block content %}
+  {% if content %}
+    <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
+      {{ content }}
+    </nav>
+  {% endif %}
+{% endblock %}

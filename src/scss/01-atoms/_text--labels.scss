@@ -1,0 +1,16 @@
+
+
+// +++++++++++ Labels
+
+.field__label {
+  color: var(--#{$prefix}body-color);
+}
+
+// ===== Field labels (Label Above)
+
+.field--label-above .field__label {
+  font-weight: $font-weight-bold;
+  padding-bottom: map-get($spacers, 4);
+  margin-bottom: map-get($spacers, 4);
+  border-bottom: 1px solid var(--#{$prefix}border-color);
+}

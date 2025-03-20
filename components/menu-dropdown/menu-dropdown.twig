@@ -1,0 +1,63 @@
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, customClasses, 0, type) }}
+
+{% macro menu_links(items, attributes, customClasses, menu_level, type) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass(customClasses).addClass('nav navbar-nav dropdown-menu-' ~ type)|without('id') }}>
+    {% else %}
+      <ul class="dropdown-menu">
+    {% endif %}
+    {% for item in items %}
+      {%
+        set classes = [
+          'nav-item',
+          item.in_active_trail ? 'active',
+          item.below ? 'dropdown',
+          menu_level == 0 and item.below ? 'aligns-left',
+          menu_level > 0 and item.below ? 'opens-right'
+        ]
+      %}
+      <li{{ item.attributes.addClass(classes) }}>
+        {%
+          set link_classes = [
+            not menu_level ? 'nav-link',
+            menu_level > 0 ? 'dropdown-item',
+            type == 'toggle' and item.below ? 'dropdown-toggle',
+            item.in_active_trail ? 'active',
+            item.url.getOption('attributes').class ? item.url.getOption('attributes').class | join(' '),
+            'nav-link-' ~ item.url.toString() | clean_class,
+          ]
+        %}
+        {%
+          set link_attributes = create_attribute({
+            'class': link_classes
+          })
+        %}
+        {% if type == 'toggle' %}
+          {% set link_attributes = link_attributes.setAttribute('role', 'button').setAttribute('data-bs-auto-close', 'outside') %}
+        {% endif %}
+        {% if item.below %}
+
+          {% set link_content %}
+            <span class="text">{{ item.title }}</span>
+            {% include '@nc_theme/SVG/icon--chevron-down.svg.twig' %}
+          {% endset %}
+
+          {{ link(link_content, item.url, link_attributes.setAttribute('data-bs-toggle', 'dropdown').setAttribute('aria-expanded', 'false').setAttribute('aria-haspopup', 'true')) }}
+
+          {{ menus.menu_links(item.below, attributes, customClasses, menu_level + 1, type) }}
+        {% else %}
+          {{ link(item.title, item.url, link_attributes) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

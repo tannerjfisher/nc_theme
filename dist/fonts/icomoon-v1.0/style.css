@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?sji9vr') format('truetype'),
-    url('fonts/icomoon.woff?sji9vr') format('woff'),
-    url('fonts/icomoon.svg?sji9vr#icomoon') format('svg');
+    url('fonts/icomoon.ttf?nz5ktb') format('truetype'),
+    url('fonts/icomoon.woff?nz5ktb') format('woff'),
+    url('fonts/icomoon.svg?nz5ktb#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,69 +24,171 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-warning:before {
-  content: "\e912";
+.icon-x:before {
+  content: "\e92d";
 }
-.icon-arrow-forward:before {
-  content: "\e904";
+.icon-twitter:before {
+  content: "\e92d";
 }
-.icon-help-circle:before {
-  content: "\e911";
+.icon-download:before {
+  content: "\e921";
 }
-.icon-play_circle_outline:before {
+.icon-arrow_drop_down:before {
+  content: "\e920";
+}
+.icon-minus:before {
   content: "\e90c";
+}
+.icon-plus:before {
+  content: "\e90d";
 }
 .icon-file:before {
   content: "\e90b";
 }
-.icon-plus:before {
-  content: "\e909";
-}
-.icon-minus:before {
-  content: "\e90a";
-}
-.icon-keyboard_arrow_up:before {
-  content: "\e908";
-}
-.icon-keyboard_arrow_down:before {
+.icon-chevron-right:before {
   content: "\e905";
 }
-.icon-navigate_next:before {
+.icon-chevron-left:before {
   content: "\e906";
 }
-.icon-chevron_right:before {
-  content: "\e906";
-}
-.icon-navigate_before:before {
+.icon-chevron-down:before {
   content: "\e907";
 }
-.icon-chevron_left:before {
-  content: "\e907";
+.icon-chevron-up:before {
+  content: "\e908";
 }
-.icon-clear:before {
-  content: "\e90f";
+.icon-search:before {
+  content: "\e909";
 }
-.icon-sunset:before {
-  content: "\e910";
+.icon-arrow-right:before {
+  content: "\e90a";
 }
-.icon-share:before {
-  content: "\e90e";
+.icon-file-movie-o:before {
+  content: "\e92b";
 }
-.icon-printer:before {
-  content: "\e90d";
+.icon-file-video-o:before {
+  content: "\e92b";
 }
-.icon-print:before {
-  content: "\e90d";
+.icon-file-archive-o:before {
+  content: "\e92c";
 }
-.icon-youtube-play:before {
+.icon-file-zip-o:before {
+  content: "\e92c";
+}
+.icon-file-code-o:before {
+  content: "\e922";
+}
+.icon-file-audio-o:before {
+  content: "\e923";
+}
+.icon-file-sound-o:before {
+  content: "\e923";
+}
+.icon-file-image-o:before {
+  content: "\e924";
+}
+.icon-file-photo-o:before {
+  content: "\e924";
+}
+.icon-file-picture-o:before {
+  content: "\e924";
+}
+.icon-file-powerpoint-o:before {
+  content: "\e925";
+}
+.icon-file-excel-o:before {
+  content: "\e926";
+}
+.icon-file-word-o:before {
+  content: "\e927";
+}
+.icon-file-pdf-o:before {
+  content: "\e928";
+}
+.icon-file-text-o:before {
+  content: "\e929";
+}
+.icon-file-o:before {
+  content: "\e92a";
+}
+.icon-slideshare:before {
   content: "\e900";
 }
-.icon-instagram:before {
+.icon-google-plus:before {
   content: "\e901";
 }
-.icon-twitter:before {
+.icon-facebook:before {
   content: "\e902";
 }
-.icon-facebook-square:before {
+.icon-facebook-f:before {
+  content: "\e902";
+}
+.icon-vk:before {
   content: "\e903";
+}
+.icon-whatsapp:before {
+  content: "\e904";
+}
+.icon-pinterest:before {
+  content: "\e90e";
+}
+.icon-xing:before {
+  content: "\e90f";
+}
+.icon-twitter1:before {
+  content: "\e910";
+}
+.icon-linkedin:before {
+  content: "\e911";
+}
+.icon-flickr:before {
+  content: "\e912";
+}
+.icon-behance:before {
+  content: "\e913";
+}
+.icon-phone:before {
+  content: "\e914";
+}
+.icon-tumblr:before {
+  content: "\e915";
+}
+.icon-drupal:before {
+  content: "\e916";
+}
+.icon-bitbucket:before {
+  content: "\e917";
+}
+.icon-gitlab:before {
+  content: "\e918";
+}
+.icon-github:before {
+  content: "\e919";
+}
+.icon-vimeo:before {
+  content: "\e91a";
+}
+.icon-globe:before {
+  content: "\e91b";
+}
+.icon-youtube-play:before {
+  content: "\e91c";
+}
+.icon-envelope-o:before {
+  content: "\e91d";
+}
+.icon-instagram:before {
+  content: "\e91e";
+}
+.icon-feed:before {
+  content: "\e91f";
+}
+.icon-rss:before {
+  content: "\e91f";
+}
+.icon-notification:before {
+  content: "\ea08";
+}
+.icon-info:before {
+  content: "\ea0c";
 }

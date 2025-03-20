@@ -1,0 +1,54 @@
+<footer class="site-footer" data-bs-theme="dark">
+  <div class="site-footer__top pt-8 pb-8">
+    <div class="{{ container }}">
+      <div class="row justify-content-start">
+        <div class="footer-top__first col-12 col-md-6 col-xl-auto pe-md-9">
+          {{ page.footer.footer_branding }} {# Logo #}
+
+          {# This is placeholder Footer Contact Information #}
+          <section class="footer-contact mt-8 mt-md-6" aria-labelledby="footer-contact-heading">
+            <h2 id="footer-contact-heading" class="visually-hidden">Contact Information for Northern</h2>
+
+            <address>
+              570 Bloor Street East, Suite 1900 <br>
+              Toronto, ON M4W 6B0
+            </address>
+
+            <h3 class="h5 mt-6 mb-2">General Inquiries</h3>
+            <p><a href="mailto:inquire@northern.ca" aria-label="Email us for general inquiries at inquire@northern.ca">inquire@northern.ca</a></p>
+
+            <h3 class="h5 mt-5 mb-2">Human Resources</h3>
+            <p><a href="mailto:hr@northern.ca" aria-label="Email our Human Resources team at hr@northern.ca">hr@northern.ca</a></p>
+          </section>
+          {# END placeholder Footer Contact Information #}
+
+        </div>
+        <div class="col-12 col-md-6 col-xl-auto ps-md-8 mt-8 mt-md-0">
+          {{ page.footer.nc_theme_footer }} {# Footer Menu #}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom pt-8 pb-8 pt-md-5 pt-xl-3 pb-md-3">
+    <div class="{{ container }}">
+      <div class="row gx-7 gy-5 gy-md-2 align-items-center">
+        <div class="col-12 col-md-auto order-xl-3 flex-md-fill d-flex justify-content-md-end">
+          {{ page.footer.social_media_links }} {# Social Media Links #}
+        </div>
+        <div class="col-12 col-md-12 col-xl-auto order-md-last order-xl-2">
+          {{ page.footer_suffix }} {# Utility Menu #}
+        </div>
+        <div class="col-12 col-md-auto col-xl-auto order-md-first order-xl-1">
+          <div class="block footer-copyright">
+            <p>
+              {{ 'Copyright.'|t }}
+              &copy; {{ site_name|escape }} {{ "now"|date("Y") }}.
+              {{ 'All rights reserved.'|t }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

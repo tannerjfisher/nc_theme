@@ -1,0 +1,8 @@
+nav.tabs {
+  margin-top: 1rem;
+}
+
+nav.tabs + * {
+  margin-top: 0;
+}
+/*# sourceMappingURL=maps/tabs.css.map */

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Default theme implementation for Symfony Email.
+ *
+ * Variables:
+ * - body: Email body content.
+ *
+ * @see template_preprocess_email()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if logo %}
+  <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" id="logo">
+    <img src="{{ logo }}" alt="{{ 'Home'|t }}" />
+  </a>
+{% endif %}
+
+{{ body }}

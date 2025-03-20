@@ -1,0 +1,99 @@
+[data-bs-theme=emergency],
+[data-bs-theme=warning],
+[data-bs-theme=information] {
+  --bs-body-color: var(--bs-white);
+  --bs-body-color-rgb: 255, 255, 255;
+  --bs-link-color: var(--bs-white);
+  --bs-link-hover-color: rgba(255, 255, 255, 0.8);
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+}
+[data-bs-theme=emergency] a,
+[data-bs-theme=emergency] .btn,
+[data-bs-theme=warning] a,
+[data-bs-theme=warning] .btn,
+[data-bs-theme=information] a,
+[data-bs-theme=information] .btn {
+  --bs-btn-focus-box-shadow: 0 0 0 0.188rem rgba(255,255,255,0.8);
+}
+[data-bs-theme=emergency] a,
+[data-bs-theme=warning] a,
+[data-bs-theme=information] a {
+  --bs-link-color-rgb: 255, 255, 255;
+  --bs-link-hover-color-rgb: rgba(255, 255, 255, 0.8);
+  --bs-link-opacity: 1;
+  color: var(--bs-link-color-rgb);
+}
+[data-bs-theme=emergency] .btn-link:hover,
+[data-bs-theme=warning] .btn-link:hover,
+[data-bs-theme=information] .btn-link:hover {
+  --bs-btn-hover-bg: rgba(0,0,0, .2);
+}
+
+[data-bs-theme=emergency] {
+  --bs-body-bg: var(--bs-danger);
+  --bs-body-bg-rgb: 216, 35, 42;
+}
+
+[data-bs-theme=information] {
+  --bs-body-bg: #233380;
+  --bs-body-bg-rgb: #233380;
+}
+
+[data-bs-theme=warning] {
+  --bs-body-color: var(--bs-black);
+  --bs-body-color-rgb: 0, 0, 0;
+  --bs-body-bg: var(--bs-warning);
+  --bs-body-bg-rgb: 255, 193, 7;
+  --bs-link-hover-color: rgba(0, 0, 0, 0.8);
+}
+[data-bs-theme=warning] a,
+[data-bs-theme=warning] .btn {
+  --bs-btn-color: #000;
+  --bs-btn-focus-box-shadow: 0 0 0 0.188rem rgba(0,0,0,0.8);
+}
+[data-bs-theme=warning] a {
+  --bs-link-color-rgb: 0, 0, 0;
+  --bs-link-hover-color-rgb: rgba(0, 0, 0, 0.8);
+  --bs-link-opacity: 1;
+  color: var(--bs-link-color-rgb);
+}
+
+.global-alert {
+  position: relative;
+  z-index: 2;
+}
+
+.alert-banner a:focus-visible,
+.alert-banner .btn:focus-visible {
+  outline: 0;
+  box-shadow: var(--bs-btn-focus-box-shadow);
+}
+.alert-banner .icon-column,
+.alert-banner .controls {
+  height: 1.96875rem;
+}
+.alert-banner .heading strong {
+  font-weight: 500;
+}
+.alert-banner .more-link {
+  font-weight: 500;
+}
+.alert-banner .icon--status {
+  width: 1.5rem;
+  height: auto;
+}
+@media (min-width: 992px) {
+  .alert-banner .icon--status {
+    width: 1.875rem;
+  }
+}
+.alert-banner .dismiss {
+  --bs-btn-padding-x: var(--bs-btn-padding-y);
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+.alert-banner .dismiss .icon {
+  width: 1.5rem;
+  height: auto;
+}

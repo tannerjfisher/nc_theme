@@ -1,0 +1,5 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Icon Card
+status: experimental
+description: 'A card style component that utilizes a card style with an icon.'
+group: Cards

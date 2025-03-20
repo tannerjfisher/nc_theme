@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Template for a Card component.
+ *
+ * Available config:
+  * - card_header: (optional) Card header.
+  * - card_footer: (optional) Card footer.
+  * - card_title: (optional) Card title.
+  * - card_subtitle: (optional) Card subtitle.
+  * - card_body: (optional) Card body (text).
+  * - card_media: (optional) Card media, instead of using card_image_*.
+  * - card_link_url: (optional) Card link URL.
+  * - card_link_text: (optional) Card link text.
+  * - card_image_src: (optional) Card image source.
+  * - card_image_alt: (optional) Card image alt text.
+  * - card_image_cap: (optional) Card image caption.
+  * - card_image_overlays: (optional) Card image overlays.
+  * - card_horizontal: (optional) Card columns boolean.
+  * - card_body_tag: (optional) Card body tag.
+  * - card_title_tag: (optional) Card title tag.
+  * - card_subtitle_tag: (optional) Card subtitle tag.
+  * - card_text_tag: (optional) Card text tag.
+  * - card_border: (optional) Card border.
+  * - card_utility_classes: (optional) Any additional classes to add to the card.
+  * - card_row_utility_classes: (optional) Any additional classes to add to the card.
+  * - card_media_column_utility_classes: (optional) Configures media column widths.
+  * - card_content_column_utility_classes: (optional) Configures content column widths.
+  * - card_title_prefix: (optional) Corresponds to title_prefix in entity templates.
+  * - card_title_suffix: (optional) Corresponds to title_suffix in entity templates.
+ */
+#}
+
+{%
+  include 'nc_theme:card' with {
+    card_title,
+    card_body,
+    card_utility_classes: card_utility_classes|merge([
+      'contact',
+    ]),
+    card_title_utility_classes: [
+      'mt-0 mb-3 h4',
+    ],
+    card_body_utility_classes: ['p-6'],
+    card_title_prefix,
+    card_title_suffix,
+  }
+%}

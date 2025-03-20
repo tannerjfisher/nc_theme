@@ -1,0 +1,129 @@
+
+@import '../../src/scss/init';
+
+// ===== All themes
+
+[data-bs-theme="emergency"],
+[data-bs-theme="warning"],
+[data-bs-theme="information"] {
+  --#{$prefix}body-color: var(--#{$prefix}white);
+  --#{$prefix}body-color-rgb: #{to-rgb($white)};
+  --#{$prefix}link-color: var(--#{$prefix}white);
+  --#{$prefix}link-hover-color: #{rgba($white, .8)};
+  color: var(--#{$prefix}body-color);
+  background-color: var(--#{$prefix}body-bg);
+
+  a,
+  .btn {
+    --#{$prefix}btn-focus-box-shadow: 0 0 #{$focus-ring-blur} #{$focus-ring-width} rgba(255,255,255,0.8);
+  }
+
+  a {
+    --#{$prefix}link-color-rgb: #{to-rgb($white)};
+    --#{$prefix}link-hover-color-rgb: #{rgba($white, .8)};
+    --#{$prefix}link-opacity: 1;
+    color: var(--#{$prefix}link-color-rgb);
+  }
+
+  .btn-link {
+    &:hover {
+      --#{$prefix}btn-hover-bg: rgba(0,0,0, .2);
+    }
+  }
+}
+
+// ===== Emergency theme
+
+[data-bs-theme="emergency"] {
+  --#{$prefix}body-bg: var(--#{$prefix}danger);
+  --#{$prefix}body-bg-rgb: #{to-rgb($danger)};
+}
+
+// ===== Information theme
+
+[data-bs-theme="information"] {
+  --#{$prefix}body-bg: #{$blue-700};
+  --#{$prefix}body-bg-rgb: #{$blue-700};
+}
+
+// ===== Warning theme
+
+[data-bs-theme="warning"] {
+  --#{$prefix}body-color: var(--#{$prefix}black);
+  --#{$prefix}body-color-rgb: #{to-rgb($black)};
+  --#{$prefix}body-bg: var(--#{$prefix}warning);
+  --#{$prefix}body-bg-rgb: #{to-rgb($warning)};
+  --#{$prefix}link-hover-color: #{rgba($black, .8)};
+
+  a,
+  .btn {
+    --#{$prefix}btn-color: #{$black};
+    --#{$prefix}btn-focus-box-shadow: 0 0 #{$focus-ring-blur} #{$focus-ring-width} rgba(0,0,0,0.8);
+  }
+
+  a {
+    --#{$prefix}link-color-rgb: #{to-rgb($black)};
+    --#{$prefix}link-hover-color-rgb: #{rgba($black, .8)};
+    --#{$prefix}link-opacity: 1;
+    color: var(--#{$prefix}link-color-rgb);
+  }
+}
+
+
+// ===== Alert Banner
+
+.global-alert {
+  position: relative;
+  z-index: 2;
+}
+
+.alert-banner {
+
+  // Set focus state consistently.
+  a,
+  .btn {
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--#{$prefix}btn-focus-box-shadow);
+    }
+  }
+
+  // Ensure status icon, alert title, more-link, and dismiss button all align vertically.
+  // This override is to ensure that the height of the icons does not cause misalignment.
+  // And instead the icon heights are set to the line height of the title.
+  .icon-column,
+  .controls {
+    height: $font-size-base * 1.75;
+  }
+
+  // Adjust font-weights
+  .heading strong {
+    font-weight: $font-weight-medium;
+  }
+  .more-link {
+    font-weight: $font-weight-medium;
+  }
+
+  // Status Icon
+  .icon--status {
+    width: 1.5rem;
+    height: auto;
+
+    @include media-breakpoint-up(lg) {
+      width: 1.875rem;
+    }
+  }
+
+  // Dismiss Button
+  // Only present if set.
+  .dismiss {
+    --#{$prefix}btn-padding-x: var(--#{$prefix}btn-padding-y);
+    margin-top: -10px;
+    margin-bottom: -10px;
+
+    .icon {
+      width: 1.5rem;
+      height: auto;
+    }
+  }
+}

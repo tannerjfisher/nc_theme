@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ */
+#}
+
+<div class="container">
+
+  {# Node Header #}
+  {% block node_header %}
+    {% include '@nc_theme/templates/partials/page-header.twig' %}
+  {% endblock node_header %}
+
+  {# In-page banner example #}
+  {% include 'nc_theme:alert-banner' with {
+    label: label,
+    content: content|without('field_alert_level', 'field_persist', 'field_link'),
+    link: node.get('field_link'),
+    classes: classes,
+    id: node.id,
+    alert_level: content.field_alert_level[0]['#markup']|clean_class,
+    persists: 1,
+    has_container: false,
+  } %}
+</div>

@@ -1,0 +1,20 @@
+.card.contact svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 5px;
+}
+.card.contact .card-text .text-formatted {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .layout--nc-layout-onecol .card.contact .card-text {
+    display: flex;
+    flex-wrap: wrap;
+    -moz-column-gap: 5rem;
+         column-gap: 5rem;
+  }
+  .layout--nc-layout-onecol .card.contact .card-text .text-formatted {
+    flex: 0 0 100%;
+  }
+}

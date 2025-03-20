@@ -1,0 +1,92 @@
+
+
+// ++++++++++ Alignment Classes
+
+// ===== Text Alignment
+
+.text-align-left {
+  text-align: left;
+}
+.text-align-right {
+  text-align: right;
+}
+.text-align-center {
+  text-align: center;
+}
+.text-align-justify {
+  text-align: justify;
+}
+
+// ===== Media Alignment
+
+// Align Left
+
+.align-left {
+  float: none;
+
+  @include media-breakpoint-up(md) {
+    float: left;
+    clear: left;
+    margin-right: $paragraph-margin-bottom;
+  }
+}
+
+// Align Right
+
+.align-right {
+  float: none;
+
+  @include media-breakpoint-up(md) {
+    float: right;
+    clear: right;
+    margin-left: $paragraph-margin-bottom;
+  }
+}
+
+// Align Center
+
+.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+// ===== Background Colors
+
+.bg {
+  padding-top: var(--#{$prefix}layout-spacer);
+}
+
+.bg + *:not(.bg) {
+  margin-top: var(--#{$prefix}layout-spacer); // If adjacent sibling does not have a background add space after the component with the background.
+}
+
+.bg-dark {
+  background-color: var(--#{$prefix}body-bg);
+}
+
+.bg-light {
+  --#{$prefix}border-color: #{$gray-300};
+  background-color: var(--#{$prefix}light);
+}
+
+.bg-dark + .bg-dark,
+.bg-light + .bg-light {
+  padding-top: 0;
+}
+
+
+// ===== Viewport Visibility Modifier for Blocks (Hide on desktop or mobile).
+// Primarily for Layout Builder or Paragraph options.
+
+body:not(.layout-edit) .visibility--desktop-only {
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+body:not(.layout-edit) .visibility--mobile-only {
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}

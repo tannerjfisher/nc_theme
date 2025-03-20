@@ -1,0 +1,62 @@
+
+@import '../init';
+@import "../../../node_modules/bootstrap/scss/breadcrumb";
+
+// ++++++++++ Breadcrumbs
+
+.breadcrumb {
+  padding-top: $breadcrumb-padding-top;
+  padding-bottom: $breadcrumb-padding-bottom;
+  border-bottom: 1px solid $border-color;
+}
+
+.breadcrumb-item {
+  align-items: center;
+  display: flex;
+  gap: map-get($spacers, 3);
+  margin-top: $breadcrumb-item-margin-top;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: map-get($spacers, 2);
+    padding: map-get($spacers, 2);
+
+    span {
+      @include visually-hidden;
+
+      @include media-breakpoint-up(sm) {
+        @include reset--visually-hidden;
+      }
+    }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--bs-focus-ring-box-shadow);
+    }
+  }
+
+  &:last-child {
+    display: none;
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+    }
+  }
+}
+
+// +++ Mobile ellipsis
+
+.ellipsis-item {
+  @include media-breakpoint-up(sm) {
+    display: none;
+  }
+}
+
+.ellipsis-item + .breadcrumb-item:not(:nth-last-child(2)) {
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+  }
+}

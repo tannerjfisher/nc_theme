@@ -1,0 +1,17 @@
+.view-search .view-header {
+  border-bottom: 1px solid #3B55D5;
+  padding-bottom: 1.5rem;
+}
+.view-search .display-summary {
+  font-size: 0.875rem;
+}
+.view-search .view-empty {
+  font-size: 1.25rem;
+}
+.view-search .views-row {
+  padding-bottom: 1.5rem;
+}
+.view-search .views-row:not(:last-child) {
+  border-bottom: 1px solid #6b7280;
+}
+/*# sourceMappingURL=maps/search.css.map */

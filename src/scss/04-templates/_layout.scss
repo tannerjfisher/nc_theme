@@ -1,0 +1,22 @@
+
+
+// Layout
+// -----------------------------------------------
+
+// add screen margin to anchored links
+main [id] {
+  scroll-margin-top: 4rem;
+}
+
+
+// ===== XS Regions
+
+.region-xs {
+  @include media-breakpoint-up(xl) {
+    font-size: #{$font-size-base-mobile};
+
+    .btn {
+      --#{$prefix}btn-font-size: #{$font-size-base-mobile};
+    }
+  }
+}

@@ -1,0 +1,91 @@
+
+/**
+ * @file
+ * Throbber.
+ */
+
+@import '../init';
+
+.ajax-progress {
+  animation: fade-in 0.2s ease forwards; // Animate opacity in.
+}
+
+[dir="rtl"] .ajax-progress {
+  float: right;
+}
+
+.ajax-progress-throbber {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.ajax-progress-throbber .throbber {
+  display: inline-flex;
+  align-items: center;
+  width: $ajax-throbber-size;
+  height: $ajax-throbber-size;
+  border-radius: 50%;
+  border-top: 2px solid $primary;
+  border-right: 2px solid transparent;
+  margin-top: -2px;
+  margin-bottom: -2px;
+  animation: rotation 1s linear infinite;
+}
+
+.ajax-progress-throbber .message {
+  display: inline-flex;
+  align-items: center;
+}
+
+tr .ajax-progress-throbber .throbber {
+  margin: 0 2px;
+}
+
+.ajax-progress-bar {
+  width: 16em;
+}
+
+/* Full screen throbber */
+.ajax-progress-fullscreen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1261;
+  background-color: rgba(255,255,255,0.5);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(#{$ajax-throbber-size} + 18px);
+    height: calc(#{$ajax-throbber-size} + 18px);
+    background-color: $white;
+    padding: 2px;
+    border-radius: 50%;
+    border: 1px solid $primary;
+    background-color: $primary;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - (#{$ajax-throbber-size} / 2));
+    left: calc(50% - (#{$ajax-throbber-size} / 2));
+    width: $ajax-throbber-size;
+    height: $ajax-throbber-size;
+    border-radius: 50%;
+    border-top: 2px solid $white;
+    border-right: 2px solid transparent;
+    animation: rotation 1s linear infinite;
+  }
+}
+[dir="rtl"] .ajax-progress-fullscreen {
+  right: 49%;
+  left: auto;
+}

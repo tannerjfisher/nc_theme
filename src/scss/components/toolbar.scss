@@ -1,0 +1,57 @@
+
+// ++++++++++ Drupal Toolbar Overrides
+
+// ===== General
+
+.toolbar ul li {
+  margin: 0;
+  padding: 0;
+}
+
+
+// ===== Toolbar Search Input
+
+#admin-toolbar-mobile-search-tab ~ #admin-toolbar-search-tab {
+  align-items: center;
+  display: flex;
+  height: var(--gin-toolbar-height);
+
+  .js-form-item.form-item {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  // Search Icon
+  .form-item::before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+// Input
+#admin-toolbar-search-input {
+  border-radius: var(--bs-border-radius);
+  border-color: transparent;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #004CFF;
+  }
+}
+
+
+// ===== Toolbar Edit Button
+
+.toolbar-icon-edit {
+  &:focus {
+    outline: 0;
+  }
+}
+
+
+// ===== Toolbar Tray Orientation Toggle
+
+.toolbar-tray-horizontal .toolbar-icon.toolbar-icon-toggle-vertical {
+  width: 39px;
+}

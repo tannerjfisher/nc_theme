@@ -1,0 +1,315 @@
+
+@use "sass:map";
+
+@import '../../src/scss/init';
+
+// ++++++++++ Base Banner Styles
+//  Shared Styles Amongst Banners
+
+.page-banner {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  .content-overlay {
+    //background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.6) 57.77%, rgba(0, 0, 0, 0.85) 100%);
+    order: 2;
+    flex: 1 1 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: flex-end;
+
+    @include media-breakpoint-up(lg) {
+      align-items: center;
+    }
+  }
+
+  .content-overlay--inner {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .banner-height-setter {
+    display: none;
+    height: calc(100vw * 0.5625);
+    width: 0;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+      max-height: calc(100vh - 115px); // (Height of the viewport) - (Height of the header)
+    }
+
+    @include media-breakpoint-up(xxl) {
+      max-height: rem(637);
+    }
+  }
+
+
+  // ===== Banner Image
+
+  .banner-image {
+    //height: 56.25vw;
+    width: 100%;
+    order: 1;
+    z-index: 0;
+
+    @include media-breakpoint-up(lg) {
+      height: auto;
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+    }
+
+    &.charcoal {
+      background-color: $secondary;
+    }
+
+    &.purple {
+      background-color: $primary;
+    }
+
+    .banner-background-image {
+      background-color: $gray-900;
+      width: 100%;
+      height: 100%;
+      background-position: center top;
+    }
+
+    *:not([data-contextual-id]) {
+      height: 100%;
+    }
+
+    .field--name-field-media-image,
+    .field--name-field-media-svg {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .media--image {
+      @include media-breakpoint-up(lg) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    img {
+      position: absolute;
+      object-fit: cover;
+      z-index: 23;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+
+  // ===== Contextual overrides
+
+  .contextual-region {
+    position: static;
+  }
+}
+
+
+
+// +++++++++ Banner Content Styling
+
+.page-banner {
+
+
+  // ===== Heading/Title
+
+  .title {
+    @include font-size(3.75rem);
+    color: $white;
+    font-weight: $font-weight-normal;
+    margin-bottom: map-get($spacers, 5);
+    margin-top: 0;
+  }
+
+
+  // ===== Paragraph/Body Text
+
+  .text-formatted {
+    &:not(:last-child) {
+      margin-bottom: map-get($spacers, 7);
+    }
+  }
+}
+
+
+
+// ++++++++++ Banner Overlay Handling
+
+$overlay-width-desktop: rem(678);
+$overlay-width-mobile: rem(600);
+
+.page-banner {
+
+  // ===== Default Overlay
+
+  .content-overlay {
+    &::before {
+      background: rgba(0,0,0,0.54); // 54% opacity black is the minimum accessible overlay for a totally white background with white text.
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+    }
+  }
+
+  .content-overlay--inner {
+    z-index: 1;
+  }
+
+  .container-content {
+    max-width: $overlay-width-mobile;
+    padding-top: var(--#{$prefix}layout-spacer);
+    padding-bottom: var(--#{$prefix}layout-spacer);
+
+    @include media-breakpoint-up(lg) {
+      max-width: $overlay-width-desktop;
+    }
+  }
+}
+
+
+
+// +++++++++++ Banner Overlay Colour Option Styles
+
+$overlay-color: (
+  none: (
+    r: 0,
+    g: 0,
+    b: 0,
+    alpha: 0.54
+  ),
+  black: (
+    r: 0,
+    g: 0,
+    b: 0,
+    alpha: 0.54
+  ),
+  white: (
+    r: 255,
+    g: 255,
+    b: 255,
+    alpha: 0.54
+  ),
+);
+
+@each $key, $value in $overlay-color {
+  .overlay-colour--#{"" + $key} .page-banner .content-overlay::before {
+    background: rgba(map.get($value, r),map.get($value, g),map.get($value, b),map.get($value, alpha));
+  }
+}
+
+
+
+// +++++++++++ Banner Background Colour Option Styles
+
+.page-banner {
+  background-color: var(--banner-background-colour);
+}
+
+
+
+// +++++++++++ Banner Mobile Option Styles
+
+.mobile-stack .page-banner {
+
+  // ===== Overlay
+
+  .content-overlay::before {
+    @include media-breakpoint-down(md) {
+      background-color: transparent;
+    }
+  }
+
+  .container-content {
+    @include media-breakpoint-down(md) {
+      padding-top: map-get($spacers, 8);
+      padding-bottom: map-get($spacers, 8);
+    }
+  }
+
+  // ===== Banner Image
+
+  .banner-image {
+    img {
+      @include media-breakpoint-down(md) {
+        position: static;
+      }
+    }
+  }
+}
+
+
+
+// +++++++++++ Banner Overlay Style Option Styles
+
+.overlay-style--around-text {
+  .page-banner .content-overlay::before {
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+
+  @each $key, $value in $overlay-color {
+    $overlay-rgba: rgba(map.get($value, r),map.get($value, g),map.get($value, b),map.get($value, alpha));
+    $overlay-rgb--no-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b),0);
+    $overlay-rgb--full-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b),100);
+
+    &.overlay-colour--#{"" + $key} .page-banner .container-box {
+      @include media-breakpoint-up(lg) {
+        background: $overlay-rgba;
+        padding: map-get($spacers, 8);
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.overlay-style--fade {
+  @include media-breakpoint-up(lg) {
+    @each $key, $value in $overlay-color {
+      $overlay-rgb--full-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b), 100);
+      $overlay-rgb--05-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b), 0.05);
+      $overlay-rgb--4-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b), 0.4);
+      $overlay-rgb--6-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b), 0.6);
+      $overlay-rgb--8-opacity: rgba(map.get($value, r),map.get($value, g),map.get($value, b), 0.8);
+
+      &.overlay-colour--#{"" + $key} .page-banner .content-overlay::before {
+        background: linear-gradient(270deg, $overlay-rgb--05-opacity 0%, $overlay-rgb--4-opacity 8.83%, $overlay-rgb--6-opacity 31.33%, $overlay-rgb--8-opacity 43.33%, $overlay-rgb--full-opacity 68.33%);
+      }
+    }
+
+    // Align the image to the right and only cover the parts of the fade where it has a lower opacity
+    .banner-image {
+      width: 67%;
+      left: auto;
+    }
+  }
+}
+
+// +++++++++++ Banner Text Colour Option Styles
+
+.page-banner {
+  .title,
+  p {
+    color: var(--banner-text-colour);
+  }
+}

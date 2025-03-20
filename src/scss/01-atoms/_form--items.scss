@@ -1,0 +1,134 @@
+
+
+// ++++++++++ Form item styles
+
+// ===== Auto width inputs
+
+.form-select,
+.form-date,
+.form-file,
+.form-tel,
+.form-number {
+  width: auto;
+  max-width: 100%;
+}
+
+
+// ===== Labels
+
+label {
+  font-weight: $font-weight-medium;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 4px;
+}
+
+
+// ===== Form item
+
+.form-item {
+  --#{$prefix}border-color: #{$gray-800};
+  margin-bottom: $form-item-margin-bottom;
+}
+
+
+// ===== Form element
+
+.form-element {
+  margin-bottom: map-get($spacers, 3);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+// ===== (Optional) flag
+
+.flag-optional {
+  color: var(--#{$prefix}body-color-lighter);
+  font-weight: $font-weight-normal;
+}
+
+
+// ===== Input group
+
+.input-group {
+  .form-element {
+    margin-bottom: 0;
+  }
+}
+
+
+// ===== Fieldset
+
+.fieldset-default,
+.fieldset-radio,
+.fieldset-checkbox {
+  legend {
+    @extend label !optional;
+    font-size: inherit;
+    float: none;
+  }
+}
+
+
+// ===== Checkbox/Radio Items
+
+.fieldset-radio,
+.fieldset-checkbox {
+  .form-check-label {
+    font-weight: $font-weight-normal;
+  }
+
+  &.is-invalid:invalid {
+    .form-check-input {
+      border-color: var(--#{$prefix}form-invalid-border-color);
+    }
+
+    .form-check-label {
+      color: var(--#{$prefix}form-invalid-color);
+    }
+
+    .invalid-feedback {
+      display: block;
+    }
+  }
+
+  &.is-invalid:valid {
+    .form-check-input {
+      border-color: var(--#{$prefix}form-valid-border-color);
+    }
+
+    .form-check-label {
+      color: var(--#{$prefix}form-valid-color);
+    }
+  }
+}
+
+.form-check {
+  margin-bottom: $form-check-margin-bottom;
+}
+
+.form-check-input {
+  position: absolute;
+}
+
+
+// ===== Form Actions
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $form-item-gutter;
+}
+
+
+// ===== Submit buttons
+
+.form-submit {
+  width: auto;
+}

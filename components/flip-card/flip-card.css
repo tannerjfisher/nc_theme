@@ -1,0 +1,54 @@
+.bg-light .flip-card {
+  background: transparent;
+}
+
+@media (max-width: 991.98px) {
+  .flip-card.border-0 .card-body {
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  .flip-card.border-0 .card-body {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .flip-card:not(.border-0) .card-img-top,
+  .flip-card:not(.border-0) .card-img-top div {
+    height: 100%;
+  }
+  .flip-card:not(.border-0) iframe.media-oembed-content {
+    height: 100%;
+    width: 100%;
+  }
+  .flip-card:not(.border-0) img {
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+.flip-card .media--type-svg .field {
+  display: flex;
+  align-items: center;
+}
+.flip-card svg {
+  height: 15rem;
+  width: auto;
+  display: block;
+  min-height: 6.5rem;
+}
+@media (min-width: 768px) {
+  .flip-card svg {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 991.98px) {
+  .flip-card:not(.border-0) svg {
+    padding-left: var(--bs-card-spacer-y);
+  }
+}

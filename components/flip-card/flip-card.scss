@@ -1,0 +1,72 @@
+@import "../../src/scss/init";
+
+// ===== Remove card background for cards on light background layout
+
+.bg-light .flip-card {
+  background: transparent;
+}
+
+// ===== Remove top spacing on mobile only
+
+.flip-card.border-0 .card-body {
+  @include media-breakpoint-down(lg) {
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+  }
+  @include media-breakpoint-up(lg) {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+}
+
+// ===== Stretch the media to full width and height on desktop to fill it's container when the card has a border
+
+@include media-breakpoint-up(lg) {
+  .flip-card:not(.border-0) {
+    .card-img-top,
+    .card-img-top div {
+      height: 100%;
+    }
+
+    iframe.media-oembed-content {
+      height: 100%;
+      width: 100%;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// ===== Style SVG
+
+.flip-card {
+  .media--type-svg .field {
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    height: 15rem;
+    width: auto;
+    display: block;
+    min-height: 6.5rem;
+
+    @media (min-width: 768px) {
+      margin: 0 auto;
+    }
+  }
+
+  &:not(.border-0) svg {
+
+    @include media-breakpoint-down(lg) {
+      padding-left: var(--bs-card-spacer-y);
+    }
+  }
+
+}
+

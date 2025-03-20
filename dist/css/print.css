@@ -1,33 +1,10 @@
-/* _print.scss */
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-@-webkit-keyframes scale-star-compact {
-  0% {
-    background-size: 1.0625rem;
-  }
-  100% {
-    background-size: 350%;
-  }
-}
-@keyframes scale-star-compact {
-  0% {
-    background-size: 1.0625rem;
-  }
-  100% {
-    background-size: 350%;
-  }
-}
 @media print {
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     background: transparent !important;
+    box-shadow: none !important;
     color: #000 !important;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
     text-shadow: none !important;
   }
   * {
@@ -35,24 +12,23 @@
     line-height: 16pt !important;
   }
   table {
-    max-width: 100% !important;
     border: 1px solid #000 !important;
+    max-width: 100% !important;
     table-layout: fixed !important;
   }
   table * {
-    max-width: 100% !important;
     border-color: #000 !important;
+    max-width: 100% !important;
   }
   table caption {
-    border-width: 1px 1px 0px 1px;
-    border-style: solid;
     border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0;
   }
   table thead {
+    -moz-column-break-inside: auto;
+         break-inside: auto;
     display: table-header-group !important;
-    -webkit-column-break-inside: auto;
-       -moz-column-break-inside: auto;
-            break-inside: auto;
   }
   table tfoot {
     display: table-row-group !important;
@@ -90,46 +66,45 @@
   h6 {
     margin: 0;
     padding: 0;
-    text-indent: 0 !important;
-    margin-bottom: 0.9375rem;
-    margin-top: 2.1875rem;
+    -moz-column-break-inside: avoid;
+         break-inside: avoid;
     display: block !important;
-    width: 100%;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
     page-break-after: avoid;
-    -webkit-column-break-inside: avoid;
-       -moz-column-break-inside: avoid;
-            break-inside: avoid;
+    text-indent: 0 !important;
+    width: 100%;
   }
   h1,
   #page-title,
   h1 *,
   #page-title * {
-    font-weight: bold;
     font-size: 22pt !important;
+    font-weight: bold;
     line-height: 28pt !important;
   }
   h2,
   h2 * {
-    font-weight: bold;
     font-size: 18pt !important;
+    font-weight: bold;
     line-height: 24pt !important;
   }
   h3,
   h3 * {
-    font-weight: bold;
     font-size: 16pt !important;
+    font-weight: bold;
     line-height: 20pt !important;
   }
   h4,
   h4 * {
-    font-weight: bold;
     font-size: 14pt !important;
+    font-weight: bold;
     line-height: 18pt !important;
   }
   h5,
   h5 * {
-    font-weight: bold;
     font-size: 12pt !important;
+    font-weight: bold;
     line-height: 16pt !important;
   }
   h6,
@@ -148,17 +123,16 @@
     widows: 3;
   }
   img {
-    page-break-inside: avoid;
     max-width: 100% !important;
+    page-break-inside: avoid;
   }
   pre,
   blockquote {
-    font-weight: 700 !important;
-    font-style: italic;
-    margin-top: 0.9375rem !important;
-    margin-bottom: 0.9375rem !important;
-    page-break-inside: avoid;
     font-size: 12pt;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    margin-top: 1rem !important;
+    page-break-inside: avoid;
   }
   pre *,
   blockquote * {
@@ -174,32 +148,35 @@
   }
   .dialog-off-canvas-main-canvas {
     display: block !important;
-    padding-top: 0 !important;
     min-height: 0 !important;
+    padding-top: 0 !important;
   }
   .container,
   .region,
   .block {
-    margin: 0 !important;
-    padding: 0 !important;
     display: block !important;
+    margin: 0 !important;
     max-width: none !important;
+    padding: 0 !important;
   }
   .table-container {
-    position: static !important;
-    overflow: visible !important;
     max-width: 100% !important;
+    overflow: visible !important;
+    position: static !important;
   }
-  .section-content {
+  #main {
     clear: both;
-    padding-top: 2.1875rem !important;
+    padding-top: 2rem !important;
   }
 }
 @media print {
   .block-system-breadcrumb-block {
     display: none !important;
   }
-  .region--sidebar-first .block-menu {
+  .block-page-title-block h1 {
+    margin-top: 0;
+  }
+  .region-sidebar-first .block-menu {
     display: none !important;
   }
   .footer {
@@ -235,62 +212,51 @@
 }
 @media print {
   .template--accordion {
-    margin-bottom: 0 !important;
     border-bottom: 0 !important;
+    margin-bottom: 0 !important;
   }
   .template--accordion > h2 {
-    padding: 0 !important;
-    margin-bottom: 0.9375rem !important;
-    margin-top: 2.1875rem !important;
-    border-top: 0 !important;
     border-bottom: 0 !important;
+    border-top: 0 !important;
+    margin-bottom: 1rem !important;
+    margin-top: 2rem !important;
+    padding: 0 !important;
   }
   .template--accordion > h2:focus {
-    border-top: 0 !important;
     border-bottom: 0 !important;
+    border-top: 0 !important;
   }
   .template--accordion > h2::after {
     display: none !important;
   }
   .template--accordion .accordion-content {
-    position: static !important;
-    width: auto !important;
     height: auto !important;
     margin: 0 !important;
-    overflow: visible !important;
     margin-bottom: 0 !important;
+    overflow: visible !important;
     padding: 0 !important;
+    position: static !important;
+    width: auto !important;
   }
 }
 @media print {
   .block-system-branding-block {
     display: block !important;
   }
-  .block-system-branding-block .site-logo {
+  .block-system-branding-block .navbar-brand {
     display: block;
     position: relative;
     width: 100%;
   }
-  .block-system-branding-block .site-logo::before {
+  .block-system-branding-block .navbar-brand::before {
     display: block;
   }
-  .block-system-branding-block .site-logo .logo--default {
-    display: none !important;
-  }
-  .block-system-branding-block .site-logo .logo--print {
+  .block-system-branding-block .navbar-brand .logo--default {
     display: block !important;
-    width: 300px !important;
     height: auto !important;
+    width: 300px !important;
   }
   .block-system-branding-block .site-name {
-    display: none !important;
-  }
-}
-@media print {
-  .block-local-tasks-block {
-    display: none !important;
-  }
-  .messages {
     display: none !important;
   }
 }
@@ -298,19 +264,16 @@
   .masthead {
     padding-left: 0;
     padding-right: 0;
+    border-bottom: 0;
   }
-  .region--masthead-primary {
-    width: 100% !important;
-    height: auto !important;
-    padding-bottom: 2.1875rem !important;
+  .region-masthead-primary {
     border-bottom: 0 !important;
-    padding-top: 1.25rem !important;
+    height: auto !important;
+    padding-bottom: 2rem !important;
+    padding-top: 1.5rem !important;
+    width: 100% !important;
   }
-  .region--masthead-primary .region__inner {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  .masthead__primary-right {
+  .header-rightt {
     display: none;
   }
   .menu-toggle-wrapper {
@@ -318,9 +281,6 @@
   }
 }
 @media print {
-  .search-toggle-wrapper {
-    display: none !important;
-  }
   .search-overlay {
     display: none !important;
   }

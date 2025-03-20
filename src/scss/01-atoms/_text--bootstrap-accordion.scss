@@ -1,0 +1,11 @@
+
+
+// ++++++++++ Bootstrap Accordion Customizations
+
+.accordion {
+  margin-bottom: map-get($spacers, 6);
+
+  .accordion-header {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,67 @@
+
+@import '../init';
+
+// +++++++++++ Chosen style overrides
+
+// Chosen container active (Focus)
+
+.chosen-container-active .chosen-single,
+.chosen-container-active .chosen-choices,
+.chosen-container-active .chosen-drop {
+  box-shadow: 0 0 0 $form-select-focus-width rgba($primary, 1);
+}
+
+.chosen-container {
+  .chosen-results {
+    li {
+      line-height: initial;
+    }
+  }
+}
+
+// ===== Chosen Single
+
+.chosen-container-single {
+  // Recreate the height of the select element
+  height: calc(#{($form-select-font-size * $form-select-line-height) + ($form-select-padding-y * 2)} + (#{$form-select-border-width} * 2));
+  border: 0;
+  border-radius: 0;
+
+  .chosen-single {
+    transition: $input-transition;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border-radius: $form-select-border-radius;
+    padding-left: $form-select-padding-x;
+
+    div {
+      visibility: hidden;
+    }
+  }
+
+  &:not(.chosen-container-active) .chosen-single {
+    border-color: $form-select-border-color;
+  }
+
+  .chosen-drop {
+    left: 0;
+
+    // Cover the focus box-shadow
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -4px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: white;
+    }
+  }
+}

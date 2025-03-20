@@ -1,0 +1,22 @@
+
+
+// ++++++++++ Details with Summary Elements
+
+.details {
+
+}
+
+.details-summary {
+  width: fit-content;
+  color: rgba(var(--#{$prefix}link-color-rgb), var(--#{$prefix}link-opacity, 1));
+}
+
+.details-summary-text {
+  text-decoration: underline;
+  text-underline-offset: var(--#{$prefix}link-underline-offset);
+}
+
+.details .details-wrapper {
+  border-left: 5px solid var(--#{$prefix}border-color);
+  padding: map-get($spacers, 5) 0 map-get($spacers, 5) map-get($spacers, 5);
+}

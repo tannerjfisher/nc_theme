@@ -1,0 +1,21 @@
+
+
+// ++++++++++ Header Language Switcher
+
+.language-switcher.menu--masthead-prefix {
+  .dropdown-menu {
+    max-width: 10rem;
+  }
+}
+
+.language-toggle-button.dropdown-toggle {
+  display: block;
+
+  &::after {
+    display: none; // Hide Caret
+  }
+
+  .icon {
+    width: 0.875rem;
+  }
+}

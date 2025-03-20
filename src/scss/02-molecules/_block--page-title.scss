@@ -1,0 +1,13 @@
+
+
+// ++++++++++ Page Title
+
+.block-page-title-block {
+  display: flow-root;
+  margin-top: map-get($spacers, 7);
+  margin-bottom: map-get($spacers, 3);
+
+  h1 {
+    margin: map-get($spacers, 5) 0 0;
+  }
+}

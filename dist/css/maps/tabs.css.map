@@ -1,0 +1,1 @@
+{"version":3,"sources":["tabs.scss","tabs.css"],"names":[],"mappings":"AACA;EACE,gBAAA;ACAF;;ADGA;EACE,aAAA;ACAF","file":"../tabs.css","sourcesContent":["\nnav.tabs {\n  margin-top: 1rem;\n}\n\nnav.tabs + * {\n  margin-top: 0;\n}\n","nav.tabs {\n  margin-top: 1rem;\n}\n\nnav.tabs + * {\n  margin-top: 0;\n}"]}

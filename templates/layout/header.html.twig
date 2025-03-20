@@ -1,0 +1,90 @@
+
+{# Global Alerts #}
+{% if page.alerts %}
+<div role="alert" class="global-alert" tabindex="-1">
+  {{ page.alerts.views_block__alerts_block_header }}
+</div>
+{% endif %}
+
+{# Header #}
+<header id="header" class="header d-flex flex-column" role="banner" aria-label="{{ 'Site header'|t}}">
+
+  {# Masthead #}
+  <nav class="navbar navbar-expand-xl masthead" id="navbar-main">
+    <div class="container gap-7 flex-nowrap">
+      {{ page.masthead.nc_theme_site_branding }}
+
+      {# Navbar Content #}
+      <div class="navbar-content d-flex align-items-center gap-2">
+        {# Search Toggle #}
+        {% include '@nc_theme/partials/search-toggle.html.twig' %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="{{ 'Toggle navigation'|t }}">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {# Desktop Search Form #}
+        <div class="form-inline navbar-form justify-content-end order-last">
+          {% include '@nc_theme/partials/search-form.twig' with {
+            formId: 'global-search',
+            siteName: site_name
+          } %}
+        </div>
+
+        {# Desktop Nav #}
+        <div class="nav-desktop navbar-collapse justify-content-md-end" tabindex="-1" aria-label="{{ 'Site Navigation'|t }}">
+          {{ page.masthead.nc_theme_main_menu }}
+        </div>
+
+        {# Additional Blocks #}
+        {{ page.masthead|without('nc_theme_site_branding', 'nc_theme_main_menu', 'secondary_menu__mobile', 'site_branding__mobile') }}
+      </div>
+      {# End Navbar Content #}
+
+      {# Mobile Off Canvas #}
+      <div id="navbarScroll" class="nav-mobile offcanvas offcanvas-start navbar-dark" tabindex="-1" aria-label="{{ 'Site Navigation'|t }}" data-bs-theme="dark">
+        <div class="site-nav-content container">
+          {{ page.masthead.nc_theme_main_menu }}
+          <hr>
+          {{ page.masthead|without('nc_theme_site_branding', 'nc_theme_main_menu', 'site_branding__mobile') }}
+        </div>
+        <div class="navbar site-nav-controls order-first flex-nowrap">
+          <div class="container gap-2">
+            {{ page.masthead.site_branding__mobile }}
+            {% include '@nc_theme/partials/search-toggle.html.twig' %}
+            {% include '@nc_theme/partials/navbar-toggler--close.twig' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {# Search Input Off Canvas #}
+  <div class="navbar responsive-search" id="responsive-search">
+    <div class="container gap-2">
+      <div class="offcanvas-search offcanvas offcanvas-top" tabindex="-1" id="offcanvasSearch" aria-label="{{ 'Site search'|t }}" data-bs-theme="dark">
+        <div class="container">
+          <div class="d-flex gap-3 pt-5 pb-5">
+            {% include '@nc_theme/partials/search-form.twig' with {
+              formId: 'global-search',
+              siteName: site_name
+            } %}
+            {% include '@nc_theme/partials/navbar-toggler--close.twig' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# End Masthead #}
+
+  {# Masthead Prefix #}
+  <nav{{ navbar_top_attributes.addClass('masthead-prefix', 'navbar', 'navbar-expand-xl', 'pt-0', 'pb-0', 'd-none', 'd-md-flex', 'order-first') }}>
+    <div class="container">
+      <div class="navbar-collapse row justify-content-end flex-fill gx-2">
+        {% include '@nc_theme/00-mock-components/mock--language-toggle.html.twig' %}
+        {{ page.masthead_prefix }}
+        <div class="vr d-none d-lg-flex h-100 text-white ms-4 me-4 mt-4 mb-4 p-0"></div>
+      </div>
+    </div>
+  </nav>
+  {# End Masthead #}
+</header>

@@ -1,0 +1,28 @@
+
+@import '../../src/scss/init';
+
+// ++++++++++ Drupal Alerts
+
+.drupal-messages,
+[data-drupal-messages] {
+  margin-top: 1rem;
+
+  .alert,
+  .messages {
+    margin-bottom: 1rem;
+  }
+
+  // Accordion
+  details {
+    border-bottom: 0;
+  }
+
+  a {
+    color: var(--#{$prefix}alert-link-color);
+  }
+}
+
+// Set the icon height for alerts to match the line-height of an h4.
+.alert > svg {
+  height: 1.944em;
+}

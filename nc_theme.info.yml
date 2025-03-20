@@ -1,0 +1,100 @@
+name: Boilerplate
+type: theme
+base theme: bootstrap_barrio
+description: A default theme focused on providing a simple pre-themed shell of components, easily customizable without the bloat.
+core_version_requirement: ^10 || ^11
+libraries:
+  - nc_theme/base
+
+libraries-extend:
+  toolbar/toolbar:
+    - nc_theme/toolbar
+  chosen/drupal.chosen:
+    - nc_theme/chosen
+    - nc_theme/chosen_accessibility
+  contextual/drupal.contextual-links:
+    - nc_theme/contextual
+  core/drupal.ajax:
+    - nc_theme/ajax
+  core/drupal.message:
+    - nc_theme/alert
+  webform/webform.element.scale:
+    - nc_theme/webform.element.scale
+
+libraries-override:
+  core/drupal.ajax:
+    css:
+      component:
+        misc/components/ajax-progress.module.css: /themes/custom/nc_theme/dist/css/ajax.css
+  system/base:
+    css:
+      component:
+        css/components/align.module.css: false
+        css/components/tabledrag.module.css: /core/themes/claro/css/components/tabledrag.css
+
+  bootstrap_barrio/global-styling:
+    js:
+      js/barrio.js: false
+    css:
+      component:
+        css/components/header.css: false
+        css/components/table.css: false
+        css/components/field.css: false
+        css/components/sidebar.css: false
+        css/components/site-footer.css: false
+        css/components/skip-link.css: false
+        css/components/tabs.css: false
+        css/components/webform.css: false
+  bootstrap_barrio/file: nc_theme/file
+  bootstrap_barrio/form: nc_theme/form
+
+  # Disable the icon font CSS on the front-end in favour of the SVG sprite for performance enhancements.
+  # Remove this if you would like to use the icon font in both the iconpicker widget and on the front-end.
+  font_iconpicker/font-custom: false
+
+  # Social Media Links Module
+  social_media_links/social_media_links.theme: nc_theme/social_media_links
+  social_media_links/fontawesome.component: false
+
+  # Webform
+  webform/webform.element.details.toggle: false
+  webform/webform.element.more: false
+  webform/webform.element.flexbox:
+    css:
+      layout:
+        css/webform.element.flexbox.css: /themes/custom/nc_theme/dist/css/webform-element-flexbox.css
+  webform/webform.element.options:
+    css:
+      component:
+        css/webform.element.options.css: /themes/custom/nc_theme/dist/css/webform-element-options.css
+  webform/webform.composite:
+    css:
+      component:
+        css/webform.composite.css: false
+  webform/webform.element.date:
+    css:
+      component:
+        css/webform.element.date.css: false
+
+#  webform/libraries.popperjs: nc_theme/popper
+
+ckeditor5-stylesheets:
+  - https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap
+
+regions:
+  alerts: Alerts
+  masthead_prefix: 'Masthead prefix'
+  masthead: 'Masthead'
+  breadcrumbs: Breadcrumbs
+  banner: Banner
+  system: System
+  page_header: 'Page header'
+  content_prefix: 'Content prefix'
+  content: Content
+  content_suffix: 'Content suffix'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  featured_bottom: 'Featured Bottom'
+  footer: Footer
+  footer_suffix: 'Footer suffix'
+  none: None

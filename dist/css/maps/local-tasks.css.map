@@ -1,0 +1,1 @@
+{"version":3,"sources":["local-tasks.scss","local-tasks.css"],"names":[],"mappings":"AAGA;EACE,mBAAA;ACFF","file":"../local-tasks.css","sourcesContent":["\n// ++++++++++ Local Tasks Block\n\n.has-layout-builder:not(.layout-edit) .region-system {\n  margin-bottom: 1rem;\n}\n",".has-layout-builder:not(.layout-edit) .region-system {\n  margin-bottom: 1rem;\n}"]}

@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ */
+#}
+
+{% include 'nc_theme:alert-banner' with {
+  label: label,
+  content: content|without('field_alert_level', 'field_persist', 'field_link'),
+  link: node.get('field_link'),
+  classes: classes,
+  id: node.id,
+  alert_level: content.field_alert_level[0]['#markup']|clean_class,
+  persists: content.field_persist.0['#markup'],
+  has_container: true,
+} %}

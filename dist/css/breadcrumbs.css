@@ -1,0 +1,97 @@
+.breadcrumb {
+  --bs-breadcrumb-padding-x: 0;
+  --bs-breadcrumb-padding-y: 0.625rem;
+  --bs-breadcrumb-margin-bottom: 0;
+  --bs-breadcrumb-font-size: 1rem;
+  --bs-breadcrumb-bg: ;
+  --bs-breadcrumb-border-radius: ;
+  --bs-breadcrumb-divider-color: var(--bs-secondary-color);
+  --bs-breadcrumb-item-padding-x: 0.5rem;
+  --bs-breadcrumb-item-active-color: var(--bs-secondary-color);
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x);
+  margin-bottom: var(--bs-breadcrumb-margin-bottom);
+  font-size: var(--bs-breadcrumb-font-size);
+  list-style: none;
+  background-color: var(--bs-breadcrumb-bg);
+  border-radius: var(--bs-breadcrumb-border-radius);
+}
+
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: var(--bs-breadcrumb-item-padding-x);
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  float: left;
+  padding-right: var(--bs-breadcrumb-item-padding-x);
+  color: var(--bs-breadcrumb-divider-color);
+  content: var(--bs-breadcrumb-divider, none) /* rtl: var(--bs-breadcrumb-divider, none) */;
+}
+.breadcrumb-item.active {
+  color: var(--bs-breadcrumb-item-active-color);
+}
+
+.breadcrumb {
+  padding-top: 0.625rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.breadcrumb-item {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+}
+.breadcrumb-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+}
+.breadcrumb-item a span {
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+@media (min-width: 576px) {
+  .breadcrumb-item a span {
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+}
+.breadcrumb-item a:focus-visible {
+  outline: 0;
+  box-shadow: var(--bs-focus-ring-box-shadow);
+}
+.breadcrumb-item:last-child {
+  display: none;
+}
+@media (min-width: 576px) {
+  .breadcrumb-item:last-child {
+    display: flex;
+  }
+}
+
+@media (min-width: 576px) {
+  .ellipsis-item {
+    display: none;
+  }
+}
+
+.ellipsis-item + .breadcrumb-item:not(:nth-last-child(2)) {
+  display: none;
+}
+@media (min-width: 576px) {
+  .ellipsis-item + .breadcrumb-item:not(:nth-last-child(2)) {
+    display: flex;
+  }
+}
+/*# sourceMappingURL=maps/breadcrumbs.css.map */

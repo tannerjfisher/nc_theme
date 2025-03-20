@@ -1,0 +1,31 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": ["attribute", "class", "id"]
+      }
+    ],
+    "max-nesting-depth": [
+      3,
+      {
+        "ignore": ["blockless-at-rules", "pseudo-classes"],
+      }
+    ],
+    "selector-class-pattern": null,
+    "selector-max-compound-selectors": 5,
+    "selector-max-id": 1
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/scss/03-organisms/regions/_region--content-prefix.scss",
+        "src/scss/03-organisms/navigation/main-nav/nc-simple-menu/_nc-simple-menu--dropdowns.scss"
+      ],
+      "rules": {
+        "selector-max-compound-selectors": null
+      }
+    }
+  ]
+}

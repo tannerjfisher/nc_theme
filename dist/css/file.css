@@ -1,0 +1,194 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("../fonts/icomoon-v1.0/fonts/icomoon.ttf?nz5ktb") format("truetype"), url("../fonts/icomoon-v1.0/fonts/icomoon.woff?nz5ktb") format("woff"), url("../fonts/icomoon-v1.0/fonts/icomoon.svg?nz5ktb#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+.file--general::before,
+.file--application-octet-stream::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e92a";
+  font-family: "icomoon";
+}
+
+.file--package-x-generic::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e92c";
+  font-family: "icomoon";
+}
+
+.file--x-office-spreadsheet::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e926";
+  font-family: "icomoon";
+  color: #1d6f42;
+}
+
+.file--x-office-document::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e927";
+  font-family: "icomoon";
+  color: #0078D4;
+}
+
+.file--x-office-presentation::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e925";
+  font-family: "icomoon";
+  color: #D04423;
+}
+
+.file--text-x-script::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e922";
+  font-family: "icomoon";
+}
+
+.file--text-html::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e922";
+  font-family: "icomoon";
+}
+
+.file--text-plain::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e929";
+  font-family: "icomoon";
+}
+
+.file--application-pdf::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e928";
+  font-family: "icomoon";
+  color: #f40f02;
+}
+
+.file--application-x-executable::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e92a";
+  font-family: "icomoon";
+}
+
+.file--audio::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e923";
+  font-family: "icomoon";
+}
+
+.file--video::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e92b";
+  font-family: "icomoon";
+}
+
+.file--text::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e929";
+  font-family: "icomoon";
+}
+
+.file--image::before {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: -0.125em;
+  content: "\e924";
+  font-family: "icomoon";
+}
+/*# sourceMappingURL=maps/file.css.map */

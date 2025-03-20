@@ -1,0 +1,13 @@
+
+// ++++++++++ Print Styles
+// --------------------------------------------------
+// We output print styling to its own stylesheet so that we can specify
+// that it should be lazy-loaded. This is because print styles are only
+// needed when the user is printing the page, and we don't want to
+// block the initial page load with these styles.
+
+@import 'init';
+
+// ===== Print
+
+@import '05-print/*';

@@ -1,0 +1,16 @@
+
+
+// ++++++++++ Media - iframe
+
+iframe {
+  height: auto;
+  width: 100%;
+}
+
+// Media Embed
+
+.media-oembed-content {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  display: block;
+}

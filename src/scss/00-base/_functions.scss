@@ -1,0 +1,107 @@
+
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
+
+// ++++++++++ Strip Unit
+
+// Remove the unit of a length.
+
+@function strip-unit($num) {
+  @return math.div($num, $num * 0 + 1);
+}
+
+
+// +++++++++ Color Functions
+
+@function tint($color, $percentage) {
+  @return color.scale($color, $lightness: $percentage);
+}
+
+
+// ++++++++++ Map Deep Get
+
+// A function to fetch deeply nested values from a map.
+
+// @author Hugo Giraudel
+// @access public
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Key chain
+// @return {*} - Desired value
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}
+
+
+// ++++++++++ Convert Hex Color To RGB
+
+@function hex-to-rgb($hex) {
+
+  // Extract the red, green, and blue values.
+  $red: color.red($hex);
+  $green: color.green($hex);
+  $blue: color.blue($hex);
+
+  @return $red, $green, $blue;
+}
+
+
+// ++++++++++ Opposite Direction
+
+// A handy function to get the opposite direction of a position, for instance left when passing right as argument.
+// Returns the opposite direction of each direction in a list.
+
+// @author Kitty Giraudel
+// @param {List} $directions - List of initial directions
+// @return {List} - List of opposite directions
+
+@function opposite-direction($directions) {
+  $opposite-directions: ();
+  $direction-map: (
+    'top':    'bottom',
+    'right':  'left',
+    'bottom': 'top',
+    'left':   'right',
+    'center': 'center',
+    'ltr':    'rtl',
+    'rtl':    'ltr'
+  );
+
+  @each $direction in $directions {
+    $direction: string.to-lower-case($direction);
+
+    @if map.has-key($direction-map, $direction) {
+      $opposite-directions: list.append($opposite-directions, string.unquote(map.get($direction-map, $direction)));
+    } @else {
+      @warn 'No opposite direction can be found for `#{$direction}`. Direction omitted.';
+    }
+  }
+
+  @return $opposite-directions;
+}
+
+
+// ++++++++++ PX To Em Converter ============================================
+
+// This PX to EM converter function can be used to convert pixels to ems
+
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{math.div(strip-unit($pixels), $context)}em;
+}
+
+
+// ++++++++++ PX To Rem Converter ============================================
+
+// This PX to REM converter function can be used to convert pixels to rems
+
+@function rem($pixels, $context: $browser-context) {
+  @return #{math.div(strip-unit($pixels), $context)}rem;
+}

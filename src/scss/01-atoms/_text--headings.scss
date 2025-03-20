@@ -1,0 +1,80 @@
+
+
+// ++++++++++ General Heading Styles
+
+h1,
+.h1 {
+  line-height: $h1-line-height-mobile;
+  margin-top: $h1-margin-top-mobile;
+  margin-bottom: $h1-margin-bottom-mobile;
+
+  @include media-breakpoint-up(xl) {
+    line-height: $h1-line-height-desktop;
+    margin-top: $h1-margin-top-desktop;
+    margin-bottom: $h1-margin-bottom-desktop;
+  }
+}
+
+h2,
+.h2 {
+  line-height: $h2-line-height-mobile;
+  margin-top: $h2-margin-top-mobile;
+  margin-bottom: $h2-margin-bottom-mobile;
+
+  @include media-breakpoint-up(xl) {
+    line-height: $h2-line-height-desktop;
+    margin-top: $h2-margin-top-desktop;
+    margin-bottom: $h2-margin-bottom-desktop;
+  }
+}
+
+h3,
+.h3 {
+  line-height: $h3-line-height-mobile;
+  margin-top: $h3-margin-top-mobile;
+  margin-bottom: $h3-margin-bottom-mobile;
+
+  @include media-breakpoint-up(xl) {
+    line-height: $h3-line-height-desktop;
+    margin-top: $h3-margin-top-desktop;
+    margin-bottom: $h3-margin-bottom-desktop;
+  }
+}
+
+h4,
+.h4 {
+  line-height: $h4-line-height-mobile;
+  margin-top: $h4-margin-top-mobile;
+  margin-bottom: $h4-margin-bottom-mobile;
+
+  @include media-breakpoint-up(xl) {
+    line-height: $h4-line-height-desktop;
+    margin-top: $h4-margin-top-desktop;
+    margin-bottom: $h4-margin-bottom-desktop;
+  }
+}
+
+h5,
+.h5 {
+  line-height: $h5-line-height-mobile;
+  margin-top: $h5-margin-top-mobile;
+  margin-bottom: $h5-margin-bottom-mobile;
+
+  @include media-breakpoint-up(xl) {
+    line-height: $h5-line-height-desktop;
+    margin-top: $h5-margin-top-desktop;
+    margin-bottom: $h5-margin-bottom-desktop;
+  }
+}
+
+// ===== Elements adjacent to headings
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  + * {
+    margin-top: 0;
+  }
+}

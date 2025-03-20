@@ -1,0 +1,36 @@
+
+
+// ++++++++++ Masthead (PRINT)
+
+@media print {
+
+  // ===== Masthead
+
+  .masthead {
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 0;
+  }
+
+
+  // ===== Masthead Primary
+
+  .region-masthead-primary {
+    border-bottom: 0 !important;
+    height: auto !important;
+    padding-bottom: map-get($spacers, 7) !important;
+    padding-top: map-get($spacers, 6) !important;
+    width: 100% !important;
+  }
+
+  .header-rightt {
+    display: none;
+  }
+
+
+  // ===== Menu Toggle
+
+  .menu-toggle-wrapper {
+    display: none !important;
+  }
+}

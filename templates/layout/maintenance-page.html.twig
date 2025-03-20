@@ -1,79 +1,56 @@
 {#
 /**
  * @file
- * Theme override to display a single Drupal page while offline.
+ * Bootstrap Barrio's theme implementation to display a single Drupal page while offline.
  *
  * All available variables are mirrored in page.html.twig.
- * Some may be blank but they are provided for consistency.
  *
  * @see template_preprocess_maintenance_page()
  */
-#}
-<div class="maintenance-page--inner">
-  <header id="header">
-    <div id="masthead" class="masthead">
-      {{ page.masthead_prefix }}
-      <div class="masthead__primary">
-        <div class="masthead__primary-left">
-          {% if logo %}
-            <a class="site-logo" href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">
-              <img src="{{ logo }}" alt="{{ 'Home'|t }}"/>
-            </a>
-          {% endif %}
-
-          {% if site_name or site_slogan %}
+ #}
+<div id="page-wrapper">
+  <div id="page">
+    <header id="header" role="banner">
+      <div class="section clearfix">
+        {% if site_name or site_slogan %}
+          <div id="name-and-slogan"{{ hide_site_name and hide_site_slogan ? ' class="visually-hidden"' }}>
             {% if site_name %}
-             <h1 class="site-name">
-               <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
-             </h1>
+              <div id="site-name"{{ hide_site_name ? ' class="visually-hidden"' }}>
+                <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">
+                  {% include('@nc_theme/templates/partials/site-branding.twig') with {
+                    path: theme_path ~ '/logo.svg',
+                    alt: site_name,
+                  }%}
+                  <div class="site-name visually-hidden">
+                    <p>{{ site_name }}</p>
+                  </div>
+                </a>
+              </div>
             {% endif %}
-
             {% if site_slogan %}
-              <div class="site-slogan">{{ site_slogan }}</div>
+              <div id="site-slogan"{{ hide_site_slogan ? ' class="visually-hidden"' }}>
+                {{ site_slogan }}
+              </div>
             {% endif %}
-          {% endif %}
-        </div>
-        <div class="masthead__primary-right">
-        </div>
+          </div>
+        {% endif %}
+      </div>
+    </header>
+    <div id="main-wrapper">
+      <div id="main" class="clearfix">
+        <main id="content" class="column" role="main">
+          <section class="section">
+            <a href="#main-content" id="main-content"></a>
+            {% if title %}
+              <header class="page-header">
+                <h1 class="title mt-8" id="page-title">{{ title }}</h1>
+              </header>
+            {% endif %}
+            {{ page.content }}
+            {{ page.highlighted }}
+          </section>
+        </main>
       </div>
     </div>
-    {{ page.masthead_secondary }}
-  </header>
-  <div class="section-content">
-    <div class="container">
-      <main role="main">
-        <div class="main--inner">
-          {% if title %}
-            <h1>{{ title }}</h1>
-          {% endif %}
-
-          <div class="page-highlighted">
-            {{ page.highlighted }}
-          </div>
-
-          <div class="page-content">
-            <p>{{ page.content }}</p>
-          </div>
-        </main>
-
-        {% if page.sidebar_first %}
-          <aside class="layout-sidebar-first" role="complementary">
-            {{ page.sidebar_first }}
-          </aside>{# /.layout-sidebar-first #}
-        {% endif %}
-
-        {% if page.sidebar_second %}
-          <aside class="layout-sidebar-second" role="complementary">
-            {{ page.sidebar_second }}
-          </aside>{# /.layout-sidebar-second #}
-        {% endif %}
-
-        {% if page.footer %}
-          <footer role="contentinfo">
-            {{ page.footer }}
-          </footer>
-        {% endif %}
-      </div>
-    </div>{# /.container #}
   </div>
 </div>

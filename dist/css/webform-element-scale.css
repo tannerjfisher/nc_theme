@@ -1,0 +1,9 @@
+.webform-scale-options .form-item {
+  padding-left: 0;
+}
+.webform-scale-options .form-item label {
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+}
+/*# sourceMappingURL=maps/webform-element-scale.css.map */

@@ -1,0 +1,105 @@
+
+
+// ++++++++++ Media Elements
+
+// ===== Image Tags
+
+img {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+
+  a & {
+    backface-visibility: hidden;
+    transform: rotate(0);
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+
+// ++++++++++ Inline Media
+// Only applies to parents indicated as formatted text.
+
+.text-formatted .drupal-media {
+  margin-top: map-get($spacers, 7);
+  margin-bottom: map-get($spacers, 7);
+}
+
+// Media with width limits (primarily for alignment)
+.text-formatted .drupal-media[class*="media--view-mode-inline-"],
+.text-formatted .caption[class*="media--view-mode-inline-"] {
+  margin-top: 0;
+  margin-bottom: map-get($spacers, 6);
+}
+
+// Unset bottom margin when media is captioned.
+.text-formatted .caption .drupal-media {
+  margin-bottom: 0;
+}
+
+
+// ===== Captioned media with view mode
+
+.caption {
+  > [class*="media--view-mode"] {
+    width: 100%;
+  }
+}
+
+
+// ===== View Modes Applied
+
+.media--view-mode-inline-75 {
+  @include media-breakpoint-up(md) {
+    width: calc(75% - 25px);
+  }
+}
+
+.media--view-mode-inline-66 {
+  @include media-breakpoint-up(md) {
+    width: calc(66.666666% - 25px);
+  }
+}
+
+.media--view-mode-inline-50 {
+  @include media-breakpoint-up(md) {
+    width: calc(50% - 25px);
+  }
+}
+
+.media--view-mode-inline-33 {
+  @include media-breakpoint-up(md) {
+    width: calc(33.333333% - 25px);
+  }
+}
+
+.media--view-mode-inline-25 {
+  @include media-breakpoint-up(md) {
+    width: calc(25% - 25px);
+  }
+}
+
+.media--view-mode-inline {
+  &.align-center {
+    img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+// ===== Force Image 100% of width when the view mode is explicit
+// but not for inline which should only scale to the size of the uploaded image.
+
+.caption-drupal-media:not(.media--view-mode-inline),
+.drupal-media:not(.media--view-mode-inline){
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
+}

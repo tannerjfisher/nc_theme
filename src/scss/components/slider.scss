@@ -1,0 +1,33 @@
+
+
+// ++++++++++ Slider Customizations
+
+.slider--image-and-text {
+  position: relative;
+
+  // ===== Prev button
+
+  .swiper-button-prev,
+  .swiper-rtl .swiper-button-next {
+    left: -0.625rem;
+    transform: translateX(-100%);
+  }
+
+  // ===== Next button
+
+  .swiper-button-next,
+  .swiper-rtl .swiper-button-prev {
+    right: -0.625rem;
+    transform: translateX(100%);
+  }
+
+  // ===== Pagination (Dots)
+
+  .swiper-horizontal>.swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal,
+  .swiper-pagination-custom,
+  .swiper-pagination-fraction {
+    bottom: -0.625rem;
+    transform: translateY(100%);
+  }
+}

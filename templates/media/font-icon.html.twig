@@ -1,0 +1,11 @@
+
+{# Template override to switch the icon font to SVG sprite reference on the front-end #}
+{% set icon_id = icon|replace({'bi-': ''}) %}
+
+<svg class="icon bi" fill="currentColor" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" tabindex="-1" focusable="false">
+  <use xlink:href="/themes/custom/nc_theme/dist/img/icons/bootstrap-icons.svg#{{ icon_id }}"></use>
+</svg>
+
+{# If you would rather just use the icon font on the front-end #}
+{# remove the above, and uncomment the follwing, then remove the library override from `.info.yml` #}
+{#<i{{ icon_attributes.setAttribute('aria-hidden', 'true') }}></i>#}

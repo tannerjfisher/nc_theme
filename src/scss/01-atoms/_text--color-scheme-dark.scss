@@ -1,0 +1,25 @@
+
+
+// ++++++++++ Simplify any color scheme styling
+
+[data-bs-theme="dark"] {
+
+  // ===== Text
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  address {
+    color: var(--bs-body-color);
+  }
+
+
+  // ===== Form items
+
+  .form-item {
+    --#{$prefix}border-color: #{$gray-400};
+  }
+}

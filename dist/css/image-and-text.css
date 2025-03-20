@@ -1,0 +1,176 @@
+.image-and-text {
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.image-and-text .image-and-text--layout {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.image-and-text .content-fields {
+  align-items: center;
+  display: flex;
+  flex: 0 1 100%;
+  margin-top: 2rem;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .image-and-text .content-fields {
+    flex: 1 1 0%;
+    margin-top: 0;
+  }
+}
+.image-and-text .content-fields .featured-tag {
+  font-size: 1.25rem;
+}
+.image-and-text .content-fields h2 {
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+.image-and-text .content-fields p {
+  margin-bottom: 0;
+}
+.image-and-text .CTA-buttons-container {
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+@media (min-width: 992px) {
+  .image-and-text .CTA-buttons-container {
+    display: block;
+  }
+}
+.image-and-text .CTA-buttons-container .read-more-link,
+.image-and-text .CTA-buttons-container .call-to-action-link {
+  margin-top: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.image-and-text .call-to-action-link {
+  align-items: center;
+  display: flex;
+}
+.image-and-text .call-to-action-link a {
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  text-decoration: none;
+}
+.image-and-text .call-to-action-link a:hover::after {
+  text-decoration: none;
+  transform: translateX(4px);
+}
+.image-and-text .call-to-action-link a:hover span {
+  text-decoration: underline;
+}
+.image-and-text .image-fields {
+  border-radius: 7px;
+  flex: 0 1 100%;
+  overflow: hidden;
+  position: relative;
+}
+@media (min-width: 992px) {
+  .image-and-text .image-fields {
+    flex: 0 1 50%;
+  }
+}
+@media (min-width: 1200px) {
+  .image-and-text .image-fields {
+    flex: 0 1 39.5rem;
+  }
+}
+.image-and-text .image-fields::before {
+  content: "";
+  display: block;
+  height: 0;
+  padding-bottom: 66.5%;
+  width: 100%;
+}
+.image-and-text .image-fields * {
+  height: 100%;
+}
+.image-and-text .image-fields .contextual {
+  display: none;
+}
+@media (min-width: 992px) {
+  .image-and-text .image-fields .contextual * {
+    height: auto;
+  }
+}
+.image-and-text .image-fields img,
+.image-and-text .image-fields svg {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.image-and-text .image-fields img.b-lazy {
+  opacity: 0;
+}
+.image-and-text .image-fields img.b-lazy.b-loaded {
+  opacity: 1;
+}
+.image-and-text .image-fields svg {
+  width: 100%;
+}
+.image-and-text .field--name-field-media-image,
+.image-and-text .field--name-field-feature-image,
+.image-and-text .field--name-field-image {
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.image-and-text .field--name-field-media-image img,
+.image-and-text .field--name-field-media-image svg,
+.image-and-text .field--name-field-feature-image img,
+.image-and-text .field--name-field-feature-image svg,
+.image-and-text .field--name-field-image img,
+.image-and-text .field--name-field-image svg {
+  transform: scale(1);
+  transition: 0.8s all cubic-bezier(0, 0.53, 0.25, 1);
+}
+.image-and-text .field--name-field-media-image svg,
+.image-and-text .field--name-field-feature-image svg,
+.image-and-text .field--name-field-image svg {
+  transform: scale(1.02);
+}
+.image-and-text .linked-image {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.image-and-text .linked-image:hover .field--name-field-media-image img,
+.image-and-text .linked-image:hover .field--name-field-media-image svg, .image-and-text .linked-image:focus .field--name-field-media-image img,
+.image-and-text .linked-image:focus .field--name-field-media-image svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.image-and-text .image-fields > .field .field--name-field-media-image {
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .image-and-text .image--left .content-fields {
+    padding-left: var(--bs-layout-spacer);
+  }
+}
+@media (min-width: 992px) {
+  .image-and-text .image--right .content-fields {
+    order: -1;
+    padding-right: var(--bs-layout-spacer);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .image-and-text + .image-and-text .node__content {
+    border-top: 1px solid #e5e7eb;
+  }
+}
+/*# sourceMappingURL=maps/image-and-text.css.map */

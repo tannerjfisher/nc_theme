@@ -1,0 +1,5 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Flip Card
+status: experimental
+description: 'A card style component that renders image and content horizontally on desktop'
+group: Cards

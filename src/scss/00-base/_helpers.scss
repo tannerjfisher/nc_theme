@@ -1,0 +1,73 @@
+
+
+// ++++++++++ Zooms the image when the parent link is hovered or focused.
+// Use on anchor link wrapping image or entire teaser
+
+.hover-zoom-image {
+  &:hover,
+  &:focus {
+    img {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  img {
+    backface-visibility: hidden;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    margin-bottom: 0;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(1.01);
+    transition: 0.8s all cubic-bezier(0, 0.53, 0.25, 1);
+  }
+
+  .teaser-image {
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      padding-top: calc((var(--nc-image-ratio-x) / var(--nc-image-ratio-x)) * 100%);
+      width: 100%;
+    }
+
+    .media,
+    .placeholder-image-container {
+      bottom: 0;
+      left: 0;
+      margin-bottom: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+
+
+// ++++++++++ Animations
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

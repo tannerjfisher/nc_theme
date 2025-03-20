@@ -1,0 +1,5 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Call to Action
+status: experimental
+description: 'A call to action component that utilizes a card style.'
+group: Cards

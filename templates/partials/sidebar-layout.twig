@@ -1,0 +1,74 @@
+{% set sidebar_first_exists = sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+{% set sidebar_second_exists = sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+
+{%
+  set main_column_primary_attributes = create_attribute({
+  class: ['layout-main-column', 'col-12', 'col-lg-9', 'order-lg-2'],
+}) %}
+
+{%
+  set main_column_secondary_attributes = create_attribute({
+  class: ['page-content', sidebar_second_exists ? 'col-12 col-lg-8', 'mb-9']
+}) %}
+
+{% set sidebar_first_classes = create_attribute({
+  class: ['sidebar', 'layout-sidebar-first', 'order-lg-1', 'col-12', 'col-lg-3', 'mb-9']
+}) %}
+
+{% set sidebar_second_classes = create_attribute({
+  class: ['sidebar', 'layout-sidebar-second', 'col-12', 'col-lg-4', 'mb-9']
+}) %}
+
+<div class="container">
+  {% if sidebar_first_exists %}
+  <div class="row">
+    <div{{ main_column_primary_attributes.addClass(sidebar_first_layout__main) }}>
+  {% endif %}
+
+      {# Page Header #}
+      {# This is only used by non-node content (e.g. view pages or webforms #}
+      {% block page_header %}
+        {% embed '@nc_theme/partials/page-header.twig' with {
+          label: page['#title']
+        } %}
+          {% block post_title_fields %}
+            {{ page_header }}
+          {% endblock post_title_fields %}
+        {% endembed %}
+      {% endblock page_header %}
+
+      {% if content_prefix %}
+        {{ content_prefix }}
+      {% endif %}
+
+      {# Main Content #}
+      {% if sidebar_second_exists %}
+      <div class="row">
+      {% endif %}
+
+        <div{{ main_column_secondary_attributes }}>
+          {{ content }}
+        </div>
+
+      {# Sidebar Second #}
+      {% if sidebar_second_exists %}
+        <aside{{ sidebar_second_classes }} role="complementary" aria-labelledby="sidebar-second-heading">
+          <h2 id="sidebar-second-heading" class="visually-hidden">{{ 'Related Content'|t }}</h2>
+          {# You can also include specific sidebar blocks individually like {{ sidebar_second.sidebar_menu }} #}
+          {{ sidebar_second }}
+        </aside>
+      </div>
+      {% endif %}
+
+    {# Sidebar First #}
+    {% if sidebar_first_exists %}
+    </div>
+    <aside{{ sidebar_first_classes.addClass('mt-8') }} role="complementary" aria-labelledby="sidebar-first-heading">
+      <h2 id="sidebar-first-heading" class="visually-hidden">{{ 'Main Sidebar'|t }}</h2>
+      {% block sidebar_first %}
+        {{ sidebar_first }}
+      {% endblock sidebar_first %}
+    </aside>
+  </div>
+  {% endif %}
+</div>

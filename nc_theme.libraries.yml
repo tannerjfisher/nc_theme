@@ -1,0 +1,182 @@
+
+# Global ------------------
+
+base:
+  css:
+    theme:
+      dist/css/bootstrap.css: {}
+      dist/css/nc_theme.css: {}
+      # Print styles (lazy-loaded for print media)
+      dist/css/print.css: { media: print }
+  js:
+    dist/js/external-links.min.js: {}
+    dist/js/popper.min.js: {}
+    dist/js/offcanvas.min.js: {}
+    dist/js/collapse.min.js: {}
+    dist/js/ui-togglers.min.js: {}
+    # dist/js/search-toggle.min.js: {}
+    dist/js/nc-simple-sidebar-menu.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+# Bootstrap ------------------
+
+alert:
+  css:
+    theme:
+      components/alert/alert.css: {}
+  js:
+    dist/js/alert.min.js: {}
+
+dropdown:
+  js:
+    dist/js/dropdown.min.js: {}
+
+popper:
+  js:
+    dist/js/popper.min.js: {}
+
+# Components ------------------
+
+ajax:
+  css:
+    component:
+      dist/css/ajax.css: {}
+
+breadcrumbs:
+  css:
+    theme:
+      dist/css/breadcrumbs.css: {}
+
+chosen:
+  css:
+    theme:
+      dist/css/chosen.css: {}
+
+chosen_accessibility:
+  js:
+    dist/js/chosen-accessibility.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
+
+contextual:
+  css:
+    theme:
+      dist/css/contextual.css: {}
+
+file:
+  css:
+    theme:
+      dist/css/file.css: {}
+
+form:
+  css:
+    theme:
+      dist/css/form.css: {}
+
+editor:
+  css:
+    theme:
+      dist/css/nc_editor.css: {}
+      https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap: { type: external }
+
+email:
+  css:
+    theme:
+      dist/css/mail.css: {}
+
+facets:
+  css:
+    theme:
+      dist/css/facets.css: {}
+  js:
+    dist/js/facets.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+gin_login:
+  css:
+    theme:
+      dist/css/gin-login.css: {}
+
+iframe_embed:
+    css:
+      theme:
+        dist/css/iframe-embed: {}
+
+image_and_text:
+  css:
+    theme:
+      dist/css/image-and-text.css: {}
+
+language:
+  css:
+    theme:
+      dist/css/language.css: {}
+
+layout_builder:
+  css:
+    theme:
+      dist/css/layout-builder.css: {}
+  dependencies:
+    - nc_theme/form
+
+local_tasks:
+  css:
+    theme:
+      dist/css/local-tasks.css: {}
+
+node_full:
+  css:
+    theme:
+      dist/css/node-full.css: {}
+
+pagination:
+  css:
+    theme:
+      dist/css/pagination.css: {}
+
+search:
+  css:
+    theme:
+      dist/css/search.css: {}
+
+sidebar_nav:
+  css:
+    theme:
+      dist/css/sidebar-nav.css: {}
+
+slider:
+  version: VERSION
+  css:
+    theme:
+      dist/css/slider.css: {}
+  js:
+    dist/js/slider.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+social_media_links:
+  css:
+    theme:
+      dist/css/social-media-links.css: {}
+
+tabs:
+  css:
+    theme:
+      dist/css/tabs.css: {}
+
+toolbar:
+  css:
+    theme:
+      dist/css/toolbar.css: {}
+
+webform.element.scale:
+  css:
+    theme:
+      dist/css/webform-element-scale.css: {}

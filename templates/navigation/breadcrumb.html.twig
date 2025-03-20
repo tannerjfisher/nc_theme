@@ -8,27 +8,40 @@
  */
 #}
 
-{% if breadcrumb and breadcrumb|length > 2 %}
-  <nav class="breadcrumb" aria-label="{{ 'Breadcrumb'|t }}">
-    <ol>
-    {% for item in breadcrumb %}
-      <li>
-        {% if loop.index == 1 %}
-          <a href="{{ item.url }}">
-            {% include '@northern_theme/SVG/icon--home--black.svg.twig' %}
-            <span class="text">{{ item.text }}</span>
-          </a>
-          <span class="breadcrumb-separator">/</span>
-        {% else %}
-          {% if item.url and item.url != '/node' %}
-            <a href="{{ item.url }}">{{ item.text }}</a>
-            <span class="breadcrumb-separator">/</span>
+{% if breadcrumb and breadcrumb|length > 2 and breadcrumb[1].url != '/node' %}
+  {{ attach_library('nc_theme/breadcrumbs') }}
+
+  {% if breadcrumb %}
+    <nav role="navigation" aria-label="breadcrumb" style="{{ breadcrumb_divider }}">
+      <ol class="breadcrumb">
+        {% for item in breadcrumb %}
+          {% if loop.first %}
+            <li class="breadcrumb-item">
+              {% if item.url %}
+                <a href="{{ item.url }}">
+                  {% include '@nc_theme/SVG/icon--home.svg.twig' %}
+                  <span>{{ item.text }}</span>
+                </a>
+              {% else %}
+                {{ item.text }}
+              {% endif %}
+            </li>
+            <li class="breadcrumb-item ellipsis-item">
+              {% include '@nc_theme/SVG/icon--breadcrumb-divider.svg.twig' %}
+              {% include '@nc_theme/SVG/icon--three-dots.svg.twig' %}
+            </li>
           {% else %}
-            <p>{{ item.text }}</p>
+            <li class="breadcrumb-item">
+              {% include '@nc_theme/SVG/icon--breadcrumb-divider.svg.twig' %}
+              {% if item.url %}
+                <a href="{{ item.url }}">{{ item.text }}</a>
+              {% else %}
+                {{ item.text }}
+              {% endif %}
+            </li>
           {% endif %}
-        {% endif %}
-      </li>
-    {% endfor %}
-    </ol>
-  </nav>
+        {% endfor %}
+      </ol>
+    </nav>
+  {% endif %}
 {% endif %}

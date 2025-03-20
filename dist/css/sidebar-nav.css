@@ -1,0 +1,211 @@
+.nc-simple-sidebar-menu {
+  background-color: #fff;
+}
+@media (max-width: 991.98px) {
+  .nc-simple-sidebar-menu {
+    display: none;
+  }
+}
+.nc-simple-sidebar-menu > h2 {
+  display: none;
+}
+.nc-simple-sidebar-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+.nc-simple-sidebar-menu ul.show {
+  margin-top: 2px;
+}
+.nc-simple-sidebar-menu li {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+.nc-simple-sidebar-menu a {
+  border-bottom: 1px solid #e5e7eb;
+  color: #3B55D5;
+  display: block;
+  padding: 0.75rem 1rem;
+  position: relative;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+.nc-simple-sidebar-menu a::before {
+  border: 1px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 1px;
+  top: 0;
+}
+.nc-simple-sidebar-menu a:hover, .nc-simple-sidebar-menu a:focus {
+  background-color: #f8fafc;
+  color: #d8232a;
+}
+.nc-simple-sidebar-menu a:focus {
+  outline: none;
+}
+.nc-simple-sidebar-menu a:focus::before {
+  border-color: #3B55D5;
+}
+.nc-simple-sidebar-menu a > .icon-chevron-down {
+  display: none;
+}
+.nc-simple-sidebar-menu .menu-item--expanded {
+  display: flex;
+  flex-wrap: wrap;
+}
+.nc-simple-sidebar-menu .menu-item--expanded > a {
+  flex: 1 1 0;
+}
+.nc-simple-sidebar-menu .menu-item--expanded > ul {
+  flex: 0 0 100%;
+}
+.nc-simple-sidebar-menu .menu-item--active-trail > a:not(.is-active),
+.nc-simple-sidebar-menu .menu-item--active-trail > a:not(.is-active) + .sub-menu--toggle {
+  border-bottom-color: #d8232a;
+}
+.nc-simple-sidebar-menu .menu-item--active-trail > a:not(.is-active).show,
+.nc-simple-sidebar-menu .menu-item--active-trail > a:not(.is-active) + .sub-menu--toggle.show {
+  border-bottom-color: #d8232a;
+  box-shadow: 0 2px 0 0 #d8232a;
+}
+.nc-simple-sidebar-menu .menu-item--active-trail > a:not(.is-active) {
+  border-left: 5px solid #d8232a;
+}
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active,
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active + .sub-menu--toggle {
+  background-color: #f8fafc;
+  font-weight: 700;
+}
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active::before, .nc-simple-sidebar-menu .menu-item--active-trail a.is-active::after,
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active + .sub-menu--toggle::before,
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active + .sub-menu--toggle::after {
+  color: #fff;
+}
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active:hover, .nc-simple-sidebar-menu .menu-item--active-trail a.is-active:focus,
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active + .sub-menu--toggle:hover,
+.nc-simple-sidebar-menu .menu-item--active-trail a.is-active + .sub-menu--toggle:focus {
+  background-color: #f8fafc;
+  color: #3B55D5;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #e5e7eb;
+  flex: 0 0 2.188rem;
+  padding: 0;
+  position: relative;
+  transition: background-color 0.2s;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle .icon {
+  font-size: 1.125rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.nc-simple-sidebar-menu .sub-menu--toggle::before, .nc-simple-sidebar-menu .sub-menu--toggle::after {
+  align-items: center;
+  border: 1px solid transparent;
+  bottom: 0;
+  box-shadow: -1px 0 0 0 #e5e7eb;
+  color: #3B55D5;
+  content: "";
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle::before {
+  display: none;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle::after {
+  display: block;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle:hover, .nc-simple-sidebar-menu .sub-menu--toggle:focus {
+  background-color: #f8fafc;
+  color: #d8232a;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle:focus {
+  outline: none;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle:focus::before, .nc-simple-sidebar-menu .sub-menu--toggle:focus::after {
+  border-color: #3B55D5;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle.show .icon {
+  transform: translate(-50%, -50%) rotate(-180deg);
+}
+.nc-simple-sidebar-menu .sub-menu--toggle.show::before {
+  display: flex;
+}
+.nc-simple-sidebar-menu .sub-menu--toggle.show::after {
+  display: none;
+}
+.js .nc-simple-sidebar-menu .menu-item--expanded > ul:not(.show) {
+  display: none;
+}
+.nc-simple-sidebar-menu ul ul {
+  margin-top: 1px;
+  padding-left: 1rem;
+}
+.nc-simple-sidebar-menu ul ul li {
+  background-color: #fff;
+}
+
+.nc-simple-sidebar-menu > ul {
+  border: 1px solid #e5e7eb;
+}
+
+.nc-simple-sidebar-menu .menu-level--1 {
+  background-color: #e5e7eb;
+}
+.nc-simple-sidebar-menu .menu-level--1 > li > a,
+.nc-simple-sidebar-menu .menu-level--1 > li > .sub-menu--toggle {
+  background-color: #fff;
+}
+.nc-simple-sidebar-menu .menu-level--1 > li > a.show,
+.nc-simple-sidebar-menu .menu-level--1 > li > .sub-menu--toggle.show {
+  box-shadow: 0 2px 0 0 #e5e7eb;
+}
+
+.nc-simple-sidebar-menu .menu-level--2 {
+  background-color: #e5e7eb;
+}
+.nc-simple-sidebar-menu .menu-level--2 > li > a.show,
+.nc-simple-sidebar-menu .menu-level--2 > li > .sub-menu--toggle.show {
+  border-bottom-color: #c8ccd5;
+  box-shadow: 0 2px 0 0 #c8ccd5;
+}
+.nc-simple-sidebar-menu .menu-level--2 a {
+  font-size: 0.875rem;
+}
+
+.nc-simple-sidebar-menu .menu-level--3 {
+  background-color: #c8ccd5;
+}
+.nc-simple-sidebar-menu .menu-level--3 > li > a.show,
+.nc-simple-sidebar-menu .menu-level--3 > li > .sub-menu--toggle.show {
+  border-bottom-color: #abb2bf;
+  box-shadow: 0 2px 0 0 #abb2bf;
+}
+
+.nc-simple-sidebar-menu .menu-level--4 {
+  background-color: #abb2bf;
+}
+.nc-simple-sidebar-menu .menu-level--4 > li > a.show,
+.nc-simple-sidebar-menu .menu-level--4 > li > .sub-menu--toggle.show {
+  border-bottom-color: #8f97a8;
+  box-shadow: 0 2px 0 0 #8f97a8;
+}
+
+.nc-simple-sidebar-menu .menu-level--5 {
+  background-color: #8f97a8;
+}
+/*# sourceMappingURL=maps/sidebar-nav.css.map */

@@ -1,0 +1,24 @@
+
+
+// ++++++++++ Branding Block
+
+.navbar-brand {
+  display: flex;
+  max-width: 16.625rem;
+
+  &:focus-visible {
+    outline: 0;
+    box-shadow: var(--#{$prefix}focus-ring-box-shadow);
+  }
+}
+
+
+// ++++++++++ Header Branding Block
+
+.header .block-system-branding-block {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+// ++++++++++ Footer Branding Block

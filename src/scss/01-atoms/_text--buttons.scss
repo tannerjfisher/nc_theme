@@ -1,0 +1,13 @@
+
+
+// ++++++++++ Buttons
+
+// ===== Dark Mode Variables
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .btn-primary {
+      --#{$prefix}btn-focus-shadow-rgb: #{to-rgb(lighten($primary, 35%))};
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a media item.
+ *
+ * Available variables:
+ * - media: The media item, with limited access to object properties and
+ *   methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ *   For example:
+ *   - entity.getEntityTypeId() will return the entity type ID.
+ *   - entity.hasField('field_example') returns TRUE if the entity includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   Calling other methods, such as entity.delete(), will result in
+ *   an exception.
+ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
+ * - name: Name of the media item.
+ * - content: Media content.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% block libraries %}
+  {{ attach_library('nc_theme/file') }}
+{% endblock %}
+
+{% set classes = [
+  'drupal-media',
+  'media--type-' ~ media.bundle.value[0].target_id|clean_class,
+  'media--view-mode-' ~ view_mode|clean_class,
+  'mb-4'
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_suffix.contextual_links }}
+
+  {%
+    include 'nc_theme:card' with {
+      card_link_url: file_link_attributes.href,
+      card_link_text: media.label,
+      card_link_utility_classes: [
+        'btn-link p-0 mb-2 ps-3 file-link stretched-link',
+      ],
+      card_body_utility_classes: []|merge(file_link_wrapper_attributes),
+      card_file_size: file_size.readable,
+      card_file_extension: file_extension,
+      card_file_changed_date: changed_date,
+      card_file_info_utility_classes: ['card-text text-muted small mb-0']
+    }
+  %}
+</div>

@@ -1,0 +1,59 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Alert Banner
+status: experimental
+description: "A dismissible alert banner for displaying notifications, warnings, and emergency messages."
+category: "Alerts & Notifications"
+
+# Library dependencies
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+    - js_cookie/js-cookie
+
+# Props
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      description: "Unique identifier for the alert. Used for dismiss functionality."
+    label:
+      type: string
+      description: "The main heading of the alert."
+    alert_level:
+      type: string
+      enum: [
+        'emergency',
+        'warning',
+        'information'
+      ]
+      required: ['true']
+      description: "Determines the type of alert and the corresponding icon."
+    content:
+      type: array
+      description: "A Drupal render array containing the alert's body content and fields."
+    link:
+      type: object
+      description: "Optional call-to-action (CTA) link."
+      properties:
+        title:
+          type: string
+          description: "The text for the link."
+        uri:
+          type: string
+          description: "The destination URL."
+        options:
+          type: object
+          description: "Additional attributes for the link element."
+    persists:
+      type: integer
+      default: 0
+      description: "If false, the alert can be dismissed and will be hidden persistently."
+    has_container:
+      type: boolean
+      default: false
+      description: "If true, the alert content is wrapped inside a Bootstrap `.container`."

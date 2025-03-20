@@ -1,0 +1,47 @@
+
+
+{# Mock Links for default/testing #}
+
+{% set attributes = create_attribute({
+  class: [
+    'language-switcher-language-url',
+    'block',
+    'block-language',
+    'block-language-block--language-interface'
+  ],
+  id: 'header-language-switcher',
+  role: 'navigation',
+})%}
+
+{% set link_content_english %}
+  <span class="language-full">English</span>
+{% endset %}
+
+{% set link_content_french %}
+  <span class="language-full">French</span>
+{% endset %}
+
+{% set links = [
+  {
+    link: link(link_content_english, 'internal:/en', create_attribute({'class': ['language-link', 'is-active']})),
+    text: 'English',
+    attributes: create_attribute(),
+  },
+  {
+    link: link(link_content_french, 'internal:/fr', create_attribute({'class': ['language-link']})),
+    text: 'French',
+    attributes: create_attribute(),
+  },
+]%}
+
+{% embed 'nc_theme:language-switcher' with {
+  attributes: attributes,
+  links: links
+} %}
+
+  {% block button_content %}
+    {% include '@nc_theme/SVG/icon--globe2.svg.twig' %}
+    {{ link_content_english }}
+    {% include '@nc_theme/SVG/icon--chevron-down.svg.twig' %}
+  {% endblock button_content %}
+{% endembed %}

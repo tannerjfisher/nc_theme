@@ -1,0 +1,44 @@
+
+
+// +++++++++++ Accordions (PRINT)
+
+@media print {
+
+
+  // ===== Ckeditor Template Accordion
+
+  .template--accordion {
+    border-bottom: 0 !important;
+    margin-bottom: 0 !important;
+
+    > h2 {
+      border-bottom: 0 !important;
+      border-top: 0 !important;
+      margin-bottom: map-get($spacers, 5) !important;
+      margin-top: map-get($spacers, 7) !important;
+      padding: 0 !important;
+
+      &:focus {
+        border-bottom: 0 !important;
+        border-top: 0 !important;
+      }
+
+      &::after {
+        display: none !important;
+      }
+    }
+
+
+    // ===== Accordion Content
+
+    .accordion-content {
+      height: auto !important;
+      margin: 0 !important;
+      margin-bottom: 0 !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      position: static !important;
+      width: auto !important;
+    }
+  }
+}

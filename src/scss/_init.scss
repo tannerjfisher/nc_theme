@@ -1,0 +1,25 @@
+// @see: https://getbootstrap.com/docs/5.3/customize/sass/#importing
+
+// ===== Reusable Functions
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap
+@import "00-base/functions"; // Custom
+
+// ===== Settings (Variables)
+@import "00-base/bootstrap-variables"; // Custom
+@import "00-base/bootstrap-variables-dark"; // Custom
+@import "../../node_modules/bootstrap/scss/variables"; // Bootstrap
+@import "../../node_modules/bootstrap/scss/variables-dark"; // Bootstrap
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// 5. Theme Specific
+@import "00-base/mixins";
+@import "00-base/placeholders";
+
+// 7. Optionally include any other parts as needed,
+// such as reboot, utilities, type, etc.
+//@import "../../node_modules/bootstrap/scss/vendor/rfs";

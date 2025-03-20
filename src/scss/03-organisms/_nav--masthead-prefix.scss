@@ -1,0 +1,27 @@
+
+
+// ++++++++++ Main Menu
+
+.menu--masthead-prefix {
+
+  // ===== Nav link
+
+  .nav-link {
+    --#{$prefix}navbar-active-color: var(--#{$prefix}body-color);
+    --#{$prefix}nav-link-color: var(--#{$prefix}body-color);
+    --#{$prefix}nav-link-font-size: 0.875rem;
+    --#{$prefix}nav-link-font-weight: #{$font-weight-medium};
+    --#{$prefix}nav-link-padding-y: 0.75rem;
+    --#{$prefix}navbar-nav-link-padding-x: 0.875rem;
+  }
+
+  .dropdown-item {
+    --#{$prefix}dropdown-item-padding-y: 0.625rem;
+    --#{$prefix}dropdown-item-padding-x: 0.625rem;
+    font-size: 0.875rem;
+  }
+
+  .dropdown-menu {
+    max-width: 15rem;
+  }
+}

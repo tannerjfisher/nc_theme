@@ -1,0 +1,32 @@
+
+@use "sass:color";
+
+// ++++++++++ Table Components
+
+table {
+
+  // ===== Table Sort
+
+  .tablesort {
+    background-image: none;
+    padding-left: 4px;
+
+    .icon::before {
+      display: block;
+    }
+
+    // Sort Acending
+    &.tablesort--asc {
+      .icon::before {
+        transform: rotate(-180deg);
+      }
+    }
+
+    // Sort Decending
+    &.tablesort--desc {
+      .icon::before {
+        transform: rotate(0);
+      }
+    }
+  }
+}

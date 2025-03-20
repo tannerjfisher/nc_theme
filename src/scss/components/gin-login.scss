@@ -1,0 +1,24 @@
+
+// +++++++++++ Gin Login Page Overrides
+// We compile this separately and do not use any functions or mixins to keep compile times down.
+
+// ===== Branding
+
+body.gin-login .user-form-page__user-form .toolbar-logo {
+  img {
+    max-width: 18.75rem;
+  }
+}
+
+
+// ===== Page Title
+
+body.gin-login .user-form-page__page-title {
+  font-size: 1.688rem;
+  line-height: 1.25;
+  font-weight: 500;
+
+  @media screen and (min-width: 1020px) {
+    font-size: 2.125rem;
+  }
+}

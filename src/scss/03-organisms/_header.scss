@@ -1,0 +1,44 @@
+
+
+// ++++++++++ Header
+// -----------------------------------------------
+
+.header {
+  position: relative;
+}
+
+
+// Masthead
+
+.masthead {
+  background-color: var(--#{$prefix}body-bg);
+  border-bottom: 1px solid $gray-300;
+  z-index: 2;
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  > .container {
+    &::before {
+      content: '';
+      background-color: $white;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+}
+
+
+// ++++++++ Masthead Prefix
+
+.masthead-prefix {
+  background-color: var(--#{$prefix}body-bg);
+  border-bottom: 1px solid $gray-300;
+  z-index: 3;
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["contextual.scss","contextual.css"],"names":[],"mappings":"AACA;EACE,kBAAA;ACAF","file":"../contextual.css","sourcesContent":["\n[data-contextual-id] {\n  position: absolute; // Ensure contextual links are not in the document flow before they get the contextual class\n}\n","[data-contextual-id] {\n  position: absolute;\n}"]}

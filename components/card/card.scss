@@ -1,0 +1,144 @@
+@import "../../src/scss/init";
+@import "../../node_modules/bootstrap/scss/card";
+
+.card {
+  // Images
+  .card-img,
+  .card-img-top,
+  .card-img-bottom {
+    overflow: hidden;
+
+    img {
+      transition: transform 0.3s;
+    }
+  }
+
+  // Card date
+  .card-date {
+    font-size: 1rem;
+  }
+
+  // Tags
+  .field--name-field-tags .links {
+    margin: 0.5rem 0 0 0;
+
+    li {
+      font-size: 0.9rem;
+    }
+  }
+
+  // File link
+  .file-link {
+    font-weight: 700;
+  }
+
+  // Empty stretched Link
+  .stretched-link.no-text,
+  .stretched-link:empty {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+
+// ===== Has Stretched link
+
+.card.link-stretched {
+  transition: box-shadow 0.3s;
+
+  // Hover State
+  &:hover {
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
+
+    // Underline title
+    .card-title {
+      text-decoration: underline;
+    }
+
+    // Zoom image on hover
+    .media--type-image img {
+      transform: scale(1.05);
+    }
+  }
+
+  // If inside link is focused
+  &:focus-within {
+    box-shadow: var(--#{$prefix}focus-ring-box-shadow);
+  }
+}
+
+// No border
+.card.link-stretched.border-0 {
+
+  // Hover State
+  &:hover:not(:focus-within) {
+    box-shadow: none;
+  }
+}
+
+
+// ===== Reduced motion preference
+
+@media (prefers-reduced-motion) {
+  /* styles to apply if a user's device settings are set to reduced motion */
+
+  .card.link-stretched:hover {
+    // Unset the image zoom.
+    .media--type-image img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+
+// ++++++++++ In `medium` or `full` size regions
+
+.region-medium,
+.region-full {
+
+  @include media-breakpoint-down(sm) {
+    .card {
+      .card-body {
+        padding-bottom: map-get($spacers, 6);
+      }
+    }
+  }
+
+  // Tablet
+
+  @include media-breakpoint-up(sm) {
+    .card {
+      --#{$prefix}card-spacer-y: #{map-get($spacers, 6)};
+      --#{$prefix}card-spacer-x: #{map-get($spacers, 6)};
+    }
+  }
+
+  // Desktop
+
+  @include media-breakpoint-up(lg) {
+    .card {
+      --#{$prefix}card-spacer-y: #{map-get($spacers, 8)};
+      --#{$prefix}card-spacer-x: #{map-get($spacers, 8)};
+    }
+  }
+}
+
+
+// ++++++++++ In `xs` size regions
+
+.region-xs {
+
+  // Desktop
+
+  @include media-breakpoint-up(xl) {
+    .card {
+
+      .card-title {
+        @include font-size($h4-font-size);
+      }
+    }
+  }
+}

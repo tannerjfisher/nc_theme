@@ -1,0 +1,13 @@
+
+@import '../init';
+
+// ++++++++++ Full node displays
+
+.node--view-mode-full {
+
+  // ===== Main image field
+
+  .node__content .field--name-field-main-image {
+    margin-bottom: map-get($spacers, 8);
+  }
+}

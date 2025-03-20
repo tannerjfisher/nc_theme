@@ -1,0 +1,94 @@
+
+@import '../vendors';
+@import '../init';
+
+// ++++++++++ File Field
+
+.file--general,
+.file--application-octet-stream {
+  &::before {
+    @include icon($icon-file-o);
+  }
+}
+
+.file--package-x-generic {
+  &::before {
+    @include icon($icon-file-archive-o);
+  }
+}
+
+.file--x-office-spreadsheet {
+  &::before {
+    @include icon($icon-file-excel-o);
+    color: #1d6f42;
+  }
+}
+
+.file--x-office-document {
+  &::before {
+    @include icon($icon-file-word-o);
+    color: #0078D4;
+  }
+}
+
+.file--x-office-presentation {
+  &::before {
+    @include icon($icon-file-powerpoint-o);
+    color: #D04423;
+  }
+}
+
+.file--text-x-script {
+  &::before {
+    @include icon($icon-file-code-o);
+  }
+}
+
+.file--text-html {
+  &::before {
+    @include icon($icon-file-code-o);
+  }
+}
+
+.file--text-plain {
+  &::before {
+    @include icon($icon-file-text-o);
+  }
+}
+
+.file--application-pdf {
+  &::before {
+    @include icon($icon-file-pdf-o);
+    color: #f40f02;
+  }
+}
+
+.file--application-x-executable {
+  &::before {
+    @include icon($icon-file-o);
+  }
+}
+
+.file--audio {
+  &::before {
+    @include icon($icon-file-audio-o);
+  }
+}
+
+.file--video {
+  &::before {
+    @include icon($icon-file-movie-o);
+  }
+}
+
+.file--text {
+  &::before {
+    @include icon($icon-file-text-o);
+  }
+}
+
+.file--image {
+  &::before {
+    @include icon($icon-file-image-o);
+  }
+}

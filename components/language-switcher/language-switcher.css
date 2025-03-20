@@ -1,0 +1,13 @@
+.language-switcher.menu--masthead-prefix .dropdown-menu {
+  max-width: 10rem;
+}
+
+.language-toggle-button.dropdown-toggle {
+  display: block;
+}
+.language-toggle-button.dropdown-toggle::after {
+  display: none;
+}
+.language-toggle-button.dropdown-toggle .icon {
+  width: 0.875rem;
+}

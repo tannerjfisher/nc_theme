@@ -1,0 +1,93 @@
+.form {
+  max-width: calc(1280px / 1.5);
+  width: 100%;
+}
+
+.fieldset {
+  margin-top: 0;
+}
+.fieldset .webform-flexbox {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.fieldset .fieldset-wrapper .webform-flexbox:last-child {
+  margin-bottom: -1.5rem;
+}
+
+.fieldset-default legend {
+  margin-bottom: 0;
+}
+
+.fieldset-standard {
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  padding: var(--bs-form-fieldset-padding);
+}
+.fieldset-standard > legend {
+  font-size: var(--bs-form-fieldset-legend-font-size);
+  font-weight: var(--bs-form-fieldset-legend-font-weight);
+  float: none;
+  margin-bottom: 0;
+  padding: 0 2px;
+  width: auto;
+}
+.fieldset-standard > legend .fieldset-legend {
+  display: flex;
+  align-items: center;
+}
+
+.form .form-check {
+  padding-left: 2.9445em;
+}
+
+.form .form-check-input {
+  width: 2.4445em;
+  height: 2.4445em;
+  margin-top: -0.34725em;
+  margin-left: -2.9445em;
+}
+
+.form-range {
+  border-color: transparent;
+}
+
+.form-element + .details {
+  margin-top: 0.5rem;
+}
+
+.description {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.description:last-child {
+  margin-bottom: 0;
+}
+
+.form-item .container-inline {
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
+  row-gap: 0.5em;
+  margin: 0;
+}
+.form-item .container-inline > div {
+  margin-bottom: 0;
+}
+
+.form--inline {
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
+  row-gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.form--inline:last-child {
+  margin-bottom: 0;
+}
+.form--inline .form-item {
+  float: none;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+/*# sourceMappingURL=maps/form.css.map */

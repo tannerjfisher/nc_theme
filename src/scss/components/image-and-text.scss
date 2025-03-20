@@ -1,0 +1,234 @@
+
+@import '../init';
+
+// +++++++++ Image and Text Block
+
+.image-and-text {
+  margin-bottom: 0;
+  overflow: hidden;
+
+  .image-and-text--layout {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+  // ===== Content
+
+  .content-fields {
+    align-items: center;
+    display: flex;
+    flex: 0 1 100%;
+    margin-top: map-get($spacers, 7);
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      flex: 1 1 0%;
+      margin-top: 0;
+    }
+
+    .featured-tag {
+      font-size: 1.25rem;
+    }
+
+    h2 {
+      margin-bottom: map-get($spacers, 4);
+      margin-top: 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  // ===== Read More Link
+
+  .CTA-buttons-container {
+    margin-bottom: 0;
+
+    @include media-breakpoint-up(xs) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: - map-get($spacers, 3);
+      margin-right: - map-get($spacers, 3);
+    }
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+
+    .read-more-link,
+    .call-to-action-link {
+      margin-top: map-get($spacers, 6);
+
+      @include media-breakpoint-up(xs) {
+        padding-left: map-get($spacers, 3);
+        padding-right: map-get($spacers, 3);
+      }
+    }
+  }
+
+  .call-to-action-link {
+    align-items: center;
+    display: flex;
+
+    a {
+      align-items: center;
+      display: flex;
+      font-weight: $font-weight-bold;
+      text-decoration: none;
+
+      &:hover {
+        &::after {
+          text-decoration: none;
+          transform: translateX(4px);
+        }
+      }
+
+      &:hover span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+
+  // ===== Image
+
+  .image-fields {
+    border-radius: 7px;
+    flex: 0 1 100%;
+    overflow: hidden;
+    position: relative;
+
+    @include media-breakpoint-up(lg) {
+      //flex: 0 1 rem(632);
+      flex: 0 1 50%;
+    }
+
+    @include media-breakpoint-up(xl) {
+      flex: 0 1 rem(632);
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      height: 0;
+      padding-bottom: 66.5%;
+      width: 100%;
+    }
+
+    * {
+      height: 100%;
+    }
+
+    .contextual {
+      display: none;
+    }
+
+    .contextual * {
+      @include media-breakpoint-up(lg) {
+        height: auto;
+      }
+    }
+
+    img,
+    svg {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    img.b-lazy {
+      opacity: 0;
+
+      &.b-loaded {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      width: 100%;
+    }
+  }
+
+  .field--name-field-media-image,
+  .field--name-field-feature-image,
+  .field--name-field-image {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    img,
+    svg {
+      transform: scale(1);
+      transition: 0.8s all cubic-bezier(0, 0.53, 0.25, 1);
+    }
+
+    svg {
+      transform: scale(1.02);
+    }
+  }
+
+  .linked-image {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      .field--name-field-media-image {
+        img,
+        svg {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  // Image Not Linked
+
+  .image-fields > .field .field--name-field-media-image {
+    overflow: hidden;
+  }
+
+
+  // +++++ Image left / Content Right
+
+  .image--left {
+    .content-fields {
+      @include media-breakpoint-up(lg) {
+        padding-left: var(--#{$prefix}layout-spacer);
+      }
+    }
+  }
+
+
+  // +++++ Content left / Image Right
+
+  .image--right {
+    .content-fields {
+      @include media-breakpoint-up(lg) {
+        order: -1;
+        padding-right: var(--#{$prefix}layout-spacer);
+      }
+    }
+  }
+}
+
+
+// ++++++++++ Adjacent Siblings
+
+.image-and-text + .image-and-text {
+  .node__content {
+    @include media-breakpoint-down(lg) {
+      border-top: 1px solid $gray-200;
+    }
+  }
+}

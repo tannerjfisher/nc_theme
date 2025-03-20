@@ -1,0 +1,313 @@
+
+@use "sass:color";
+
+@import '../init';
+
+// ++++++++++ Sidebar Navigation
+
+.nc-simple-sidebar-menu {
+  background-color: $white;
+
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+
+  > h2 {
+    display: none;
+  }
+
+  ul {
+    @include reset--list();
+    margin-bottom: 0;
+    max-width: 100%;
+
+    &.show {
+      margin-top: 2px;
+    }
+  }
+
+  li {
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+
+  a {
+    border-bottom: 1px solid $gray-200;
+    color: $primary;
+    display: block;
+    padding: map-get($spacers, 4) map-get($spacers, 5);
+    position: relative;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+
+    &::before {
+      border: 1px solid transparent;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 1px;
+      top: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $gray-100;
+      color: $secondary;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::before {
+        border-color: $primary;
+      }
+    }
+
+
+    // ===== Default Chevron Down
+    // Comment this out to if taking approach where expanded nav items are not linked therefor the split menu item is not necessary.
+    > .icon-chevron-down {
+      display: none;
+    }
+  }
+
+
+  // ===== Menu Items With Children
+
+  .menu-item--expanded {
+    display: flex;
+    flex-wrap: wrap;
+
+    > a {
+      flex: 1 1 0;
+    }
+
+    > ul {
+      flex: 0 0 100%;
+    }
+  }
+
+
+  // ===== Active Trail Item
+
+  .menu-item--active-trail {
+    > a:not(.is-active),
+    > a:not(.is-active) + .sub-menu--toggle {
+      border-bottom-color: $secondary;
+
+      &.show {
+        border-bottom-color: $secondary;
+        box-shadow: 0 2px 0 0 $secondary;
+      }
+    }
+
+    > a:not(.is-active) {
+      border-left: 5px solid $secondary;
+    }
+  }
+
+
+  // ===== Active Item
+
+  .menu-item--active-trail a.is-active,
+  .menu-item--active-trail a.is-active + .sub-menu--toggle {
+    background-color: $gray-100;
+    font-weight: $font-weight-bold;
+
+
+    &::before,
+    &::after {
+      color: $white;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $gray-100;
+      color: $primary;
+    }
+  }
+
+
+  // ===== Sub Menu Toggle
+
+  .sub-menu--toggle {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid $gray-200;
+    flex: 0 0 2.188rem;
+    padding: 0;
+    position: relative;
+    transition: background-color 0.2s;
+
+    // Icon
+
+    .icon {
+      font-size: 1.125rem;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    // Borders
+
+    &::before,
+    &::after {
+      align-items: center;
+      border: 1px solid transparent;
+      bottom: 0;
+      box-shadow: -1px 0 0 0 $gray-200;
+      color: $primary;
+      content: '';
+      display: flex;
+      font-size: 1rem;
+      justify-content: center;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      display: block;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $gray-100;
+      color: $secondary;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::before,
+      &::after {
+        border-color: $primary;
+      }
+    }
+
+    // Showing Children
+
+    &.show {
+      .icon {
+        transform: translate(-50%, -50%) rotate(-180deg);
+      }
+
+      &::before {
+        display: flex;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+
+  // ===== Javascript is working
+
+  .js & {
+    .menu-item--expanded {
+      > ul:not(.show) {
+        // @include visually-hidden();
+        display: none;
+      }
+    }
+  }
+
+
+  // ===== Menus not the firsth level
+
+  ul ul {
+    margin-top: 1px;
+    padding-left: map-get($spacers, 5);
+
+    li {
+      background-color: $white;
+    }
+  }
+}
+
+
+// ++++++++++ First Level
+
+.nc-simple-sidebar-menu {
+  > ul {
+    border: 1px solid $gray-200;
+  }
+}
+
+.nc-simple-sidebar-menu .menu-level--1 {
+  background-color: $gray-200;
+
+  > li > a,
+  > li > .sub-menu--toggle {
+    background-color: $white;
+
+    &.show {
+      box-shadow: 0 2px 0 0 $gray-200;
+    }
+  }
+}
+
+
+// ++++++++++ Second Level
+
+.nc-simple-sidebar-menu .menu-level--2 {
+  background-color: $gray-200;
+
+  > li > a,
+  > li > .sub-menu--toggle {
+    &.show {
+      border-bottom-color: color.adjust($gray-200, $lightness: -10%);
+      box-shadow: 0 2px 0 0 color.adjust($gray-200, $lightness: -10%);
+    }
+  }
+
+  a {
+    font-size: .875rem;
+  }
+}
+
+
+// ++++++++++ Third Level
+
+.nc-simple-sidebar-menu .menu-level--3 {
+  background-color: color.adjust($gray-200, $lightness: -10%);
+
+  > li > a,
+  > li > .sub-menu--toggle {
+    &.show {
+      border-bottom-color: color.adjust($gray-200, $lightness: -20%);
+      box-shadow: 0 2px 0 0 color.adjust($gray-200, $lightness: -20%);
+    }
+  }
+}
+
+
+// ++++++++++ Fourth Level
+
+.nc-simple-sidebar-menu .menu-level--4 {
+  background-color: color.adjust($gray-200, $lightness: -20%);
+
+  > li > a,
+  > li > .sub-menu--toggle {
+    &.show {
+      border-bottom-color: color.adjust($gray-200, $lightness: -30%);
+      box-shadow: 0 2px 0 0 color.adjust($gray-200, $lightness: -30%);
+    }
+  }
+}
+
+
+// ++++++++++ Fifth Level
+
+.nc-simple-sidebar-menu .menu-level--5 {
+  background-color: color.adjust($gray-200, $lightness: -30%);
+}

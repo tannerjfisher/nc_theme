@@ -1,0 +1,22 @@
+.drupal-messages,
+[data-drupal-messages] {
+  margin-top: 1rem;
+}
+.drupal-messages .alert,
+.drupal-messages .messages,
+[data-drupal-messages] .alert,
+[data-drupal-messages] .messages {
+  margin-bottom: 1rem;
+}
+.drupal-messages details,
+[data-drupal-messages] details {
+  border-bottom: 0;
+}
+.drupal-messages a,
+[data-drupal-messages] a {
+  color: var(--bs-alert-link-color);
+}
+
+.alert > svg {
+  height: 1.944em;
+}

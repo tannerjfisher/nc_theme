@@ -1,0 +1,13 @@
+@import "../../src/scss/init";
+
+// ===== SVG
+
+.icon-card svg {
+  width: auto;
+  height: 2.5rem;
+  fill: currentColor;
+
+  @include media-breakpoint-up(sm) {
+    height: 3rem;
+  }
+}

@@ -1,0 +1,39 @@
+
+
+// ++++++++++ Search Toggle UI Element
+
+.search-toggle {
+
+  .toggler-icon-wrapper {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  .navbar-toggler-icon {
+    --#{$prefix}navbar-toggler-icon-bg: #{escape-svg($navbar-light-search-toggler-icon-bg)};
+    width: 1em;
+    height: 1em;
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .search-toggle .navbar-toggler-icon {
+      --#{$prefix}navbar-toggler-icon-bg: #{escape-svg($navbar-dark-search-toggler-icon-bg)};
+    }
+  }
+}
+
+
+// ===== Navbar Search Toggle
+
+.navbar-content .search-toggle {
+  @include media-breakpoint-down(xxl) {
+    display: block;
+    order: 6;
+  }
+
+  @include media-breakpoint-down(xl) {
+    order: -1;
+  }
+}

@@ -1,0 +1,74 @@
+
+
+// ++++++++++ Global Search Form
+
+.search-form {
+
+  // Override the btn-group settings.
+  .input-group .form-element:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    padding-right: 2.75rem;
+    border-top-right-radius: var(--#{$prefix}border-radius);
+    border-bottom-right-radius: var(--#{$prefix}border-radius);
+  }
+
+  .btn:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    --#{$prefix}btn-focus-box-shadow: var(--#{$prefix}focus-ring-box-shadow);
+    position: absolute;
+    right: 0;
+    height: 100%;
+    border-top-left-radius: var(--#{$prefix}border-radius);
+    border-bottom-left-radius: var(--#{$prefix}border-radius);
+  }
+
+  // Ensure the button remains on top when the search input is focused.
+  .form-element:focus + .btn {
+    z-index: 6;
+  }
+
+  // Form item
+
+  .form-item {
+    margin-bottom: 0;
+  }
+}
+
+
+// ++++++++++ Header Exposed Search Form
+
+.masthead .navbar-form {
+  flex: 0 1 auto;
+  display: none;
+
+  @include media-breakpoint-up(xxl) {
+    display: block;
+  }
+}
+
+
+// +++++++++++ Header Off Canvas Search
+
+.responsive-search {
+  --#{$prefix}navbar-padding-y: 0;
+  z-index: 1;
+
+  .form-item {
+    flex: 1 1 0;
+  }
+}
+
+.offcanvas-search.offcanvas-top {
+  position: absolute;
+  top: 100%;
+  bottom: auto;
+  height: auto;
+  max-height: none;
+  z-index: -2;
+}
+
+
+// ===== Off Canvas Backdrop
+
+.offcanvas-search.show ~ .offcanvas-backdrop,
+.offcanvas-search.showing ~ .offcanvas-backdrop {
+  z-index: -3;
+}

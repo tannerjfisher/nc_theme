@@ -1,0 +1,29 @@
+
+
+// ++++++++++ Placeholders for separating inclusion.
+// Typically useful for the stylesheet loaded by ckeditor
+// to ensure that styles applied directly to `.text-formatted`
+// also apply in the wysiwyg.
+
+%list-styles {
+  ol,
+  ul {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+    padding-inline-start: 1.6em;
+
+    li {
+      padding-inline-start: .4em;
+      margin-top: .6em;
+      margin-bottom: .6em;
+    }
+  }
+
+  ol > li::marker {
+    color: var(--nc-counters);
+  }
+
+  ul > li::marker {
+    color: var(--nc-bullets);
+  }
+}

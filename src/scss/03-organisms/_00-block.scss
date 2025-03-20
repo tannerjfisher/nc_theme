@@ -1,0 +1,53 @@
+
+
+// ++++++++++ Blocks (General)
+
+.block {
+  //margin-bottom: map-get($spacers, 7);
+}
+
+
+// ===== Block Titles (Typically View Blocks)
+
+.block-title {
+  margin-top: 0;
+}
+
+
+// ===== Block Rendered Via Layout Builder
+
+.block-layout-builder {
+  margin-bottom: var(--#{$prefix}layout-spacer);
+
+  &:last-child {
+    margin-bottom: 0; // Remove the margin from the last block so that layout regions and sections have control.
+  }
+}
+
+
+// ===== Layout regions
+
+.layout__region,
+.layout-split:not(.bg) {
+  margin-bottom: var(--#{$prefix}layout-spacer);
+}
+
+.layout-split .layout__region {
+  margin-bottom: 0;
+}
+
+// If split layout has background, switch to padding.
+.layout-split.bg {
+  padding-bottom: var(--#{$prefix}layout-spacer);
+}
+
+
+// ===== Full width layout
+
+.layout-full .layout__region {
+  margin-bottom: 0;
+}
+
+.layout-full + *:not(.bg) {
+  margin-top: var(--#{$prefix}layout-spacer); // If adjacent sibling does not have a background add space after the component with the background.
+}

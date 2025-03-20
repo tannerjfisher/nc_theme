@@ -1,0 +1,152 @@
+
+
+// ===== Simplify any border styling
+
+* {
+  border: 0 solid $gray-100;
+}
+
+
+// ===== Last Child/First Child
+// These are critical because they generally unset element styles when they're the first element (e.g. heading, block-quotes).
+
+.text-formatted {
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+}
+
+
+// ===== Paragraphs
+
+p {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+// ===== Small Text
+
+.small {
+  color: $gray-500;
+  font-size: .875em;
+  line-height: 1.3;
+}
+
+
+// ===== Tables
+
+table {
+  //@include font-size-md();
+}
+
+
+// ===== Lists
+
+.text-formatted {
+  @extend %list-styles;
+}
+
+
+// ===== Figure and Caption
+
+figure {
+  margin-top: map-get($spacers, 7);
+  margin-bottom: map-get($spacers, 7);
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+figcaption {
+  color: var(--nc-captions);
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-top: 1em;
+}
+
+
+// ===== Blockquote
+
+blockquote {
+  font-size: 1em;
+  color: var(--nc-quotes);
+  border-inline-start-width: .25rem;
+  border-inline-start-color: var(--nc-quote-borders);
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-inline-start: 1em;
+
+
+  // ===== Quote Icon
+
+  &::before {
+    content: '';
+    font-size: 1em;
+    display: block;
+    position: static;
+    border-radius: 0;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 41 32' fill='none'%3E%3Cpath d='M25.468 31.3C24.4787 31.3 23.984 30.8053 23.984 29.816V18.262C23.984 17.838 24.1253 17.4493 24.408 17.096L33.948 2.044C34.372 1.47866 34.902 1.05466 35.538 0.771996C36.174 0.489329 36.7747 0.347995 37.34 0.347995H39.142C39.6367 0.347995 39.99 0.559995 40.202 0.983994C40.4847 1.33733 40.52 1.76133 40.308 2.256L35.75 12.75C35.4673 13.5273 35.3613 14.128 35.432 14.552C35.5733 14.976 35.962 15.2587 36.598 15.4L38.294 15.506C39.142 15.5767 39.7073 15.7533 39.99 16.036C40.2727 16.3187 40.414 16.8133 40.414 17.52V29.604C40.414 30.7347 39.884 31.3 38.824 31.3H25.468ZM1.724 31.3C0.734667 31.3 0.24 30.8053 0.24 29.816V18.262C0.24 17.838 0.346 17.4493 0.558 17.096L10.204 2.044C10.5573 1.47866 11.052 1.05466 11.688 0.771996C12.3947 0.489329 13.0307 0.347995 13.596 0.347995H15.292C15.8573 0.347995 16.246 0.559995 16.458 0.983994C16.67 1.33733 16.7053 1.76133 16.564 2.256L12.006 12.75C11.6527 13.5273 11.5113 14.128 11.582 14.552C11.7233 14.976 12.112 15.2587 12.748 15.4L14.55 15.506C15.3273 15.5767 15.8573 15.7533 16.14 16.036C16.4227 16.3187 16.564 16.8133 16.564 17.52V29.604C16.564 30.7347 16.0693 31.3 15.08 31.3H1.724Z' fill='" + str-replace(#{$gray-200}, '#', '%23') + "'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 2em;
+    height: 2em;
+    margin-bottom: 0.8em;
+  }
+
+  p {
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+
+
+  // ===== Attribution
+
+  .small {
+    color: var(--nc-quotes-attribution);
+    font-style: normal;
+    margin-top: -1em;
+
+    &::before {
+      content: "— ";
+    }
+
+    &::after {
+      content: '';
+    }
+  }
+}
+
+
+// ===== Pre
+
+pre {
+  color: var(--nc-pre-code);
+  background-color: var(--nc-pre-bg);
+  overflow-x: auto;
+  font-weight: 400;
+  font-size: .9em;
+  line-height: 1.7;
+  margin-top: 1.7em;
+  margin-bottom: 1.7em;
+  border-radius: .375rem;
+  padding-top: .8em;
+  padding-inline-end: 1.1em;
+  padding-bottom: .8em;
+  padding-inline-start: 1.1em;
+}

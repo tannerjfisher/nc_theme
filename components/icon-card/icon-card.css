@@ -1,0 +1,10 @@
+.icon-card svg {
+  width: auto;
+  height: 2.5rem;
+  fill: currentColor;
+}
+@media (min-width: 576px) {
+  .icon-card svg {
+    height: 3rem;
+  }
+}

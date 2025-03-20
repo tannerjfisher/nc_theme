@@ -1,0 +1,16 @@
+
+
+// ++++++++++ Skip Link
+// -------------------------
+
+.skip-link {
+  color: $white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1px 10px 2px;
+  border-radius: 0 0 10px 10px;
+  outline: 0;
+}

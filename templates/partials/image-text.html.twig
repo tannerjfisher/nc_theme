@@ -1,0 +1,38 @@
+
+{# ===== Available Vars ===== #}
+{#
+image_location: left | right
+containerClass
+image
+heading
+title
+body
+readmoretext: Read more text for link to node
+readmoreurl: URL to node
+readmorespeech: The complementary text for speech readers
+viewalltext: Read More Text for link to view rendering all nodes of same type
+viewallurl: URL to view rendering all nodes of same type
+viewallspeech: The complementary text for speech readers
+#}
+
+{{ attach_library('nc_theme/image-and-text') }}
+
+{% set image_location_class = imageOrientation ? 'image--' ~ imageOrientation|clean_class : 'image--left' %}
+
+{% set containerClasses = [
+  'content-overlay--inner',
+  'image-and-text',
+  containerClass is defined ? containerClass : 'container container-large'
+]%}
+
+{% block paragraph %}
+  <section{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="content-wrapper">
+        {{ content.field_section_title_text_image }}
+        {{ content.field_text_media_with_image }}
+      </div>
+      {{ content.field_yp_opc_tbwi_image }}
+    {% endblock %}
+  </section>
+{% endblock paragraph %}

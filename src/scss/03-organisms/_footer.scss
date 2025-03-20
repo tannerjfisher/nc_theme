@@ -1,0 +1,56 @@
+
+// ++++++++++ Footer
+// -----------------------------------------------------
+
+.site-footer {
+  background-color: $gray-800;
+}
+
+
+// ===== Footer Top
+
+.footer-top__first {
+  @include media-breakpoint-up(md) {
+    border-right: 1px solid rgba($white, 0.1);
+  }
+}
+
+
+// ===== Footer Bottom
+
+.site-footer__bottom {
+  font-size: $small-font-size;
+  border-top: 1px solid rgba($white, 0.1);
+}
+
+
+// ===== Footer Menus
+
+.site-footer .nav {
+  margin-left: calc(var(--#{$prefix}nav-link-padding-x) * -1);
+  margin-right: calc(var(--#{$prefix}nav-link-padding-x) * -1);
+
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: rgba($white, 0.8);
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .site-footer .nav {
+    li {
+      flex: 1 1 100%;
+    }
+
+    a {
+      @include media-breakpoint-down(md) {
+        text-decoration: underline;
+      }
+    }
+  }
+}

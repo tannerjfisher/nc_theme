@@ -1,0 +1,21 @@
+.slider--image-and-text {
+  position: relative;
+}
+.slider--image-and-text .swiper-button-prev,
+.slider--image-and-text .swiper-rtl .swiper-button-next {
+  left: -0.625rem;
+  transform: translateX(-100%);
+}
+.slider--image-and-text .swiper-button-next,
+.slider--image-and-text .swiper-rtl .swiper-button-prev {
+  right: -0.625rem;
+  transform: translateX(100%);
+}
+.slider--image-and-text .swiper-horizontal > .swiper-pagination-bullets,
+.slider--image-and-text .swiper-pagination-bullets.swiper-pagination-horizontal,
+.slider--image-and-text .swiper-pagination-custom,
+.slider--image-and-text .swiper-pagination-fraction {
+  bottom: -0.625rem;
+  transform: translateY(100%);
+}
+/*# sourceMappingURL=maps/slider.css.map */

@@ -1,0 +1,123 @@
+{#
+/**
+ * @file
+ * Custom banner block template for the Drupal SDC theme.
+ *
+ * This template is used to render a configurable banner with the following features:
+ * - Dynamic headings, background colors, overlay styles, and text colors.
+ * - Primary and secondary call-to-action links with support for additional screen reader text.
+ * - Accessibility enhancements via visually-hidden text for WCAG compliance.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapping `<div>` element.
+ * - classes: An array of CSS classes to be applied to the wrapping `<div>`.
+ * - title_prefix: Additional output rendered before the title, often used for contextual links.
+ * - title_suffix: Additional output rendered after the title.
+ * - label: The title of the banner, displayed as a heading.
+ * - heading_type: The HTML heading level for the banner title (e.g., h1, h2). Validated against allowed heading types.
+ * - allowed_heading_types: An array of valid heading types to ensure proper structure (h1-h6).
+ * - background_colour: The configured background color for the banner.
+ * - overlay_colour: The overlay color applied over the banner's background.
+ * - text_colour: The text color for the banner content.
+ * - text_colour_label: A human-readable label for the text color.
+ * - link_primary: The primary call-to-action link object. Contains:
+ *   - url: The URL of the primary link.
+ *   - title: The display text of the primary link.
+ * - link_secondary: The secondary call-to-action link object. Contains:
+ *   - url: The URL of the secondary link.
+ *   - title: The display text of the secondary link.
+ * - image: The banner image.
+ *
+ * Logic:
+ * - Link titles can include a `|` delimiter to provide additional screen reader text:
+ *   - For example, "Learn More|Opens in a new window" will display "Learn More" visually, while "Opens in a new window" is only available to screen readers.
+ * - CSS variables are dynamically generated for the banner's styling.
+ * - WCAG-compliant visually-hidden text is used for accessibility.
+ */
+#}
+
+{% if '|' in link_primary.title %}
+  {# Split the primary link text into visible text and screen reader text. #}
+  {% set link_primary_array = link_primary.title|split('|') %}
+  {% set link_primary_text = link_primary_array[0]|trim(side='right') %}
+  {% set link_primary_read = link_primary_array[1]|trim(side='left') %}
+{% else %}
+  {% set link_primary_text = link_primary.title %}
+{% endif %}
+
+{% if '|' in link_secondary.title %}
+  {# Split the secondary link text into visible text and screen reader text. #}
+  {% set link_secondary_array = link_secondary.title|split('|') %}
+  {% set link_secondary_text = link_secondary_array[0]|trim(side='right') %}
+  {% set link_secondary_read = link_secondary_array[1]|trim(side='left') %}
+{% else %}
+  {% set link_secondary_text = link_secondary.title %}
+{% endif %}
+
+{# Define allowed heading types for validation. #}
+{% set allowed_heading_types = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] %}
+
+{# Generate CSS variables for dynamic styling. #}
+{% set css_variables %}
+  :root {
+  --banner-background-colour: {{ background_colour == 'none' ? 'transparent' : background_colour }};
+  --banner-overlay-colour: {{ overlay_colour == 'none' ? 'transparent' : overlay_colour }};
+  --banner-text-colour: {{ text_colour }};
+  }
+{% endset %}
+
+<div class="page-banner hero-banner banner-container section--width--full">
+  <div class="content-overlay">
+    <div class="banner-height-setter"></div>
+    <div class="content-overlay--inner">
+      <div class="container">
+        <div class="container-content">
+          <div class="container-box">
+          {% if label %}
+          {# Render the heading using the configured type or default to h2. #}
+          {% if heading_type in allowed_heading_types %}
+            <{{ heading_type }}{{ title_attributes.addClass('title') }}>{{ label }}</{{ heading_type }}>
+          {% else %}
+            <h2 {{ title_attributes.addClass('title') }}>{{ label }}</h2>
+          {% endif %}
+          {% endif %}
+
+          {# Render the block's dynamic content. #}
+          {% block content %}
+          {% endblock content %}
+
+          {# Render call-to-action links. #}
+          {% if link_primary_text or link_secondary_text %}
+            <div class="buttons d-flex flex-wrap gap-5">
+              {% if link_primary_text %}
+                <a href="{{ link_primary.url }}" class="btn {{ text_colour_label|clean_class == 'white' ? 'btn-light' : 'btn-primary' }}">
+                  {{ link_primary_text }}
+                  {% if link_primary_read %}
+                    <span class="visually-hidden">{{ link_primary_read }}</span>
+                  {% endif %}
+                </a>
+              {% endif %}
+              {% if link_secondary_text %}
+                <a href="{{ link_secondary.url }}" class="btn {{ text_colour_label|clean_class == 'white' ? 'btn-light' : 'btn-primary' }}">
+                  {{ link_secondary_text }}
+                  {% if link_secondary_read %}
+                    <span class="visually-hidden">{{ link_secondary_read }}</span>
+                  {% endif %}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="banner-image">
+    {{ image }}
+  </div>
+</div>
+
+<style>
+  {# Inject CSS variables for styling. #}
+  {{ css_variables|raw }}
+</style>

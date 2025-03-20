@@ -1,0 +1,41 @@
+
+{% set header_attributes = header_attributes ? header_attributes : create_attribute() %}
+
+<header{{ header_attributes.addClass('page-header', 'mt-8', 'mb-8') }}>
+  {{ title_prefix }}
+
+  {% block pre_title_fields %}
+    {% for field in pre_title_fields %}
+      {{ field }}
+    {% endfor %}
+  {% endblock pre_title_fields %}
+
+  {% block title %}
+    <h1{{ title_attributes.addClass('page-title', 'mt-0', 'mb-0') }}>{{ label }}</h1>
+  {% endblock title %}
+
+  {% if summary %}
+    <p class="summary lead">
+      {{ summary }}
+    </p>
+  {% endif %}
+
+  {% block post_title_fields %}
+    {% for field in post_title_fields %}
+      {{ field }}
+    {% endfor %}
+  {% endblock post_title_fields %}
+
+  {{ title_suffix }}
+  {% if display_submitted %}
+    <div class="node__meta">
+      {{ author_picture }}
+      {% block submitted %}
+        <em{{ author_attributes }}>
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        </em>
+      {% endblock %}
+      {{ metadata }}
+    </div>
+  {% endif %}
+</header>

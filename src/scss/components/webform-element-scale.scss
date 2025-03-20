@@ -1,0 +1,14 @@
+
+// ++++++++++ Scale form element
+
+.webform-scale-options {
+  .form-item {
+    padding-left: 0;
+
+    label {
+      display: flex;
+      justify-content: center;
+      line-height: 0;
+    }
+  }
+}

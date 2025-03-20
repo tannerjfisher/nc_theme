@@ -1,0 +1,670 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in nc_theme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function nc_theme_preprocess_html(&$variables) {
+  // Node is the Layout Builder Layout Editor.
+  // Check if the last component of the path is "layout".
+  $current_url = Url::fromRoute('<current>');
+  $url_path = explode('/', $current_url->toString());
+  if (end($url_path) === 'layout') {
+    // Add a class to the body element.
+    $variables['attributes']['class'][] = 'layout-edit';
+  }
+
+  // Check if the current page is a node.
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    // Check if the node has a Layout Builder layout set.
+    if ($node->hasField('layout_builder__layout')) {
+      // Add a class to the body element.
+      $variables['attributes']['class'][] = 'has-layout-builder';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function nc_theme_preprocess_page(&$variables) {
+
+  // Pass the site name to the page template.
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+
+  // Check if the node is an instance of NodeInterface and using Layout Builder.
+  if (\Drupal::routeMatch()->getParameter('node')) {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $variables['node'];
+
+    /** @var \Drupal\Core\Entity\EntityDisplayRepository entity_display_repository */
+    $entity_display_repository = \Drupal::service('entity_display.repository');
+
+    $view_display = $entity_display_repository
+      ->getViewDisplay($node->getEntityTypeId(), $node->bundle());
+
+    $variables['has_layout_builder'] = $view_display
+      ->getThirdPartySetting('layout_builder', 'enabled');
+  }
+
+  // Get the current route.
+  $route_match = \Drupal::service('current_route_match');
+
+  // Check if the current route corresponds to the default layout configuration
+  // page for a node display using Layout Builder.
+  if ($route_match->getRouteName() === 'layout_builder.defaults.node.view' || $route_match->getRouteName() === 'layout_builder.overrides.node.view') {
+    $variables['has_layout_builder'] = TRUE;
+  }
+
+  // Handle the Page Title Block based on Page Title Display Field (Found on Landing Page CT)
+  // Check if the node exists and it has the specified field.
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node && $node->hasField('field_page_title_display')) {
+    $field_value = $node->get('field_page_title_display')->value;
+
+    // Check the value of the field.
+    if ($field_value == 'hide_page_title') {
+      // Remove the page title block from the block layout.
+      unset($variables['page']['content_prefix']['nc_theme_page_title']);
+    }
+    elseif ($field_value == 'visually_hide_page_title') {
+      // Add a class to the page title block.
+      $variables['page']['content_prefix']['nc_theme_page_title']['#attributes']['class'][] = 'visually-hidden';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Pass block region value to content so this can be used in
+ * MYTHEME_theme_suggestions_menu_alter.
+ */
+function nc_theme_preprocess_block(&$variables) {
+  if (isset($variables['elements']['#id'])) {
+    $region = Block::load($variables['elements']['#id'])->getRegion();
+    $variables['content']['#attributes']['region'] = $region;
+  }
+
+  // Add the inline class for reusable blocks.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    $block = $variables['elements']['content']['#block_content'];
+    $plugin_id = $block->bundle();
+    if ($block->isReusable()) {
+      $variables['attributes']['class'][] = Html::getClass('block-inline-block--' . $plugin_id);
+    }
+  }
+  else {
+    $plugin_id = $variables['derivative_plugin_id'];
+  }
+
+  // Add margin top class to the System Message Block
+  if ($plugin_id == 'system_messages_block') {
+    $variables['attributes']['class'][] = 'mt-5';
+  }
+
+  // Hero Banner Block
+  if ($variables['derivative_plugin_id'] === 'hero_banner') {
+    $content = $variables['content']['#block_content'];
+
+    // Extract fields.
+    $variables['background_colour'] = $content->get('field_colour')->value;
+    $variables['background_colour_label'] = $content->get('field_colour')->getSetting('allowed_values')[$variables['background_colour']] ?? 'none';
+
+    $variables['heading_type'] = $content->get('field_heading_type')->value;
+    $variables['allowed_heading_types'] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+    $variables['stack_on_mobile'] = $content->get('field_stack_overlay_on_mobile')->value;
+
+    $variables['overlay_colour'] = $content->get('field_overlay_colour')->value ?? 'none';
+    $variables['overlay_colour_label'] = $content->get('field_overlay_colour')->getSetting('allowed_values')[$variables['overlay_colour']] ?? 'none';
+
+    $variables['overlay_style'] = $content->get('field_overlay_style')->value ?? 'full';
+    $variables['text_colour'] = $content->get('field_text_colour')->value ?? 'none';
+    $variables['text_colour_label'] = $content->get('field_text_colour')->getSetting('allowed_values')[$variables['text_colour']] ?? 'none';
+
+    // Primary Link.
+    $primary_link = $content->get('field_primary_link')->get(0);
+    $variables['link_primary'] = [
+      'url' => $primary_link ? $primary_link->getUrl()->toString() : '',
+      'title' => $primary_link ? $primary_link->title : '',
+    ];
+
+    // Secondary Link.
+    $secondary_link = $content->get('field_secondary_link')->get(0);
+    $variables['link_secondary'] = [
+      'url' => $secondary_link ? $secondary_link->getUrl()->toString() : '',
+      'title' => $secondary_link ? $secondary_link->title : '',
+    ];
+
+    // Add extra classes.
+    $variables['classes'] = [
+      'block',
+      'block-' . \Drupal\Component\Utility\Html::getClass($variables['configuration']['provider']),
+      'block-' . str_replace(':', '--', $variables['plugin_id']),
+      !empty($variables['content']['_layout_builder']) ? 'layout-builder-block' : '',
+      $variables['stack_on_mobile'] ? 'mobile-stack' : '',
+      'background-colour--' . \Drupal\Component\Utility\Html::getClass($variables['background_colour_label']),
+      'overlay-colour--' . \Drupal\Component\Utility\Html::getClass($variables['overlay_colour_label']),
+      'overlay-style--' . \Drupal\Component\Utility\Html::getClass($variables['overlay_style']),
+      'text-colour--' . \Drupal\Component\Utility\Html::getClass($variables['text_colour_label']),
+    ];
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function nc_theme_preprocess_node(&$variables) {
+
+  $node = $variables['node'];
+  // Will create a link variable visible on the event registration
+  // page that points to the event detail page.
+  if ($variables['view_mode'] == 'header' && $node->getType() == 'event') {
+    if (\Drupal::routeMatch()->getRouteName() === 'entity.node.register') {
+      $variables['event_details_url'] = $variables['url'];
+    }
+  }
+
+  // Making region content available to node templates.
+  // Retrieve view mode.
+  $view_mode = $variables['view_mode'];
+  // Array of allowed view modes.
+  $allowed_view_modes = ['full'];
+  if (in_array($view_mode, $allowed_view_modes)) {
+    // Allowed regions (for performance so as to not execute for unneeded region)
+    $allowed_regions = ['sidebar_first', 'sidebar_second'];
+    nc_theme_add_regions_to_template($allowed_regions, $variables);
+  }
+}
+
+/**
+ * Function to add page regions to node templates.
+ */
+function nc_theme_add_regions_to_template($allowed_regions, &$variables) {
+  // Retrieve active theme.
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+
+  // Get the theme regions.
+  $available_regions = system_region_list($theme, 'REGIONS_ALL');
+
+  // Validate allowed regions with available regions.
+  $regions = array_intersect(array_keys($available_regions), $allowed_regions);
+
+  // For each region.
+  foreach ($regions as $key => $region) {
+
+    // Load region blocks.
+    $blocks = \Drupal::entityTypeManager()->getStorage('block')
+      ->loadByProperties(['theme' => $theme, 'region' => $region]);
+
+    // Sort the blocks by weight.
+    uasort($blocks, 'Drupal\block\Entity\Block::sort');
+
+    // Add viewable blocks and their settings to $build.
+    $build = [];
+    foreach ($blocks as $key => $block) {
+      if ($block->access('view')) {
+        $block = Block::load($key);
+        $block_content = \Drupal::entityTypeManager()->getViewBuilder('block')
+          ->view($block);
+        $build[$key] = $block_content;
+      }
+    }
+
+    // Add build to region.
+    $variables[$region] = $build;
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for media templates.
+ */
+function nc_theme_preprocess_media(&$variables) {
+  $media = $variables['media'];
+
+  // Ensure the media entity has the file field.
+  if ($media->hasField('field_media_file') && !$media->get('field_media_file')->isEmpty()) {
+    $file = $media->get('field_media_file')->entity;
+
+    if ($file) {
+      // Get file size.
+      $file_size_bytes = $file->getSize();
+      $variables['file_size'] = [
+        'bytes' => $file_size_bytes,
+        'readable' => format_file_size($file_size_bytes),
+      ];
+
+      // Get file extension and MIME type.
+      $file_uri = $file->getFileUri();
+      $file_extension = pathinfo($file_uri, PATHINFO_EXTENSION);
+      $variables['file_extension'] = strtoupper($file_extension);
+
+      $file_mime_type = $file->getMimeType();
+      $variables['file_mime_type'] = $file_mime_type;
+
+      // Get last changed timestamp and format it using the date formatter service.
+      $changed_timestamp = $file->getChangedTime();
+      $date_formatter = \Drupal::service('date.formatter');
+      $variables['changed_date'] = $date_formatter->format($changed_timestamp, 'custom', 'j M Y');
+
+      // Generate the file URL using the file_url_generator service.
+      $file_url_generator = \Drupal::service('file_url_generator');
+      $file_url = $file_url_generator->generateAbsoluteString($file_uri);
+      $variables['file_url'] = $file_url;
+
+      // Prepare the link wrapper attributes using the Attribute class.
+      $variables['file_link_wrapper_attributes'] = new Attribute([
+        'class' => [
+          'file',
+          'file--mime-' . str_replace('/', '-', $file_mime_type),
+          'file--' . str_replace('/', '-', $file_mime_type),
+        ],
+      ]);
+
+      // Prepare the link attributes using the Attribute class.
+      $variables['file_link_attributes'] = new Attribute([
+        'href' => $file_url,
+        'type' => $file_mime_type,
+      ]);
+    }
+  }
+}
+
+/**
+ * Formats file size into human-readable format.
+ */
+function format_file_size($bytes) {
+  if ($bytes < 1024) {
+    return $bytes . ' B';
+  } elseif ($bytes < 1048576) {
+    return round($bytes / 1024, 2) . ' KB';
+  } elseif ($bytes < 1073741824) {
+    return round($bytes / 1048576, 2) . ' MB';
+  } else {
+    return round($bytes / 1073741824, 2) . ' GB';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance_page templates.
+ */
+function nc_theme_preprocess_maintenance_page(&$variables) {
+  // Get the default theme from the configuration.
+  $default_theme = \Drupal::config('system.theme')->get('default');
+
+  // Build the theme path manually since drupal_get_path() can cause issues.
+  $theme_path = "themes/custom/{$default_theme}";
+
+  // Pass the theme path to the template.
+  $variables['theme_path'] = '/' . $theme_path;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nc_theme_preprocess_layout(&$variables) {
+  // Check if the layout has the `bg-dark` class.
+  if (isset($variables['attributes']['class']) && in_array('bg-dark', $variables['attributes']['class'])) {
+    // Add the `data-bs-theme="dark"` attribute to the layout.
+    $variables['attributes']['data-bs-theme'] = 'dark';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Provide region based menu suggestions.
+ */
+function nc_theme_theme_suggestions_menu_alter(&$suggestions, array $variables) {
+  if (isset($variables['attributes']['region'])) {
+    $region_suggestion = 'menu__' . $variables['attributes']['region'];
+    $region_suggestion = str_replace('-', '_', $region_suggestion);
+    array_splice($suggestions, 0, 0, $region_suggestion);
+    $suggestion = 'menu__' . $variables['menu_name'] . '__' . $variables['attributes']['region'];
+    $suggestion = str_replace('-', '_', $suggestion);
+    array_splice($suggestions, 3, 0, $suggestion);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for hook_theme_suggestions_block_alter().
+ *
+ * Add block suggestions for custom block bundles:
+ * - block--[BUNDLE].html.twig.
+ * - block--[BUNDLE]--[BLOCK_ID].html.twig.
+ */
+function nc_theme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['content']['#block_content'])) {
+    $block_bundle = $variables['elements']['content']['#block_content']->bundle();
+    // block--[BUNDLE].html.twig.
+    array_splice($suggestions, 1, 0, 'block__' . $block_bundle);
+
+    if (isset($variables['elements']['#id'])) {
+      $block_id = $variables['elements']['#id'];
+      // block--[BUNDLE]--[BLOCK_ID].html.twig.
+      array_splice($suggestions, 2, 0, 'block__' . $block_bundle . '__' . $block_id);
+    }
+  }
+
+  if (isset($variables['elements']['#id']) && isset($variables['elements']['#plugin_id'])) {
+    $plugin_id = str_replace(':', '__', $variables['elements']['#plugin_id']);
+    $base_plugin_id = $variables['elements']['#base_plugin_id'];
+    $block = Block::load($variables['elements']['#id']);
+    if ($block) {
+      $region = $block->getRegion();
+      // block--[PLUGIN_ID]--[REGION].html.twig.
+      array_splice($suggestions, 2, 0, 'block__' . $base_plugin_id . '__' . $region);
+      // block--[BASE_PLUGIN_ID]--[REGION].html.twig.
+      array_splice($suggestions, 4, 0, 'block__' . $plugin_id . '__' . $region);
+    }
+  }
+
+  // Ensure this is an entity view block.
+  if ($variables['elements']['#plugin_id'] == 'entity_view:node' && isset($variables['elements']['content']['#view_mode'])) {
+    $view_mode = $variables['elements']['content']['#view_mode'];
+
+    // Add a suggestion specific to the view mode.
+    $suggestions[] = 'block__entity_view__node__' . $view_mode;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for hook_theme_suggestions_taxonomy_term_alter().
+ *
+ * Add block suggestions for taxonomy term view modes:
+ * - taxonomy-term--[VIEW_MODE].html.twig.
+ * - taxonomy-term--[BUNDLE]--[VIEW_MODE].html.twig.
+ * - taxonomy-term--[TERM_ID]--[VIEW_MODE].html.twig.
+ */
+function nc_theme_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
+  if (isset($variables['elements']['#taxonomy_term'])) {
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = $variables['elements']['#taxonomy_term'];
+
+    if (isset($variables['elements']['#view_mode'])) {
+      $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+      // taxonomy-term--[VIEW_MODE].html.twig.
+      $suggestions[] = 'taxonomy_term__' . $sanitized_view_mode;
+      // taxonomy-term--[BUNDLE]--[VIEW_MODE].html.twig.
+      $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $sanitized_view_mode;
+      // taxonomy-term--[TERM_ID]--[VIEW_MODE].html.twig.
+      $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $sanitized_view_mode;
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_fieldset_alter().
+ */
+function nc_theme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables, $hook)
+{
+  if (isset($variables['element']['#type'])) {
+    $id = str_replace("-", "_", $variables['element']['#type']);
+    $suggestions[] = $hook . '__' . $id;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for views_exposed_form.
+ */
+function nc_theme_preprocess_views_exposed_form(&$variables) {
+  $form = &$variables['form'];
+
+  // Add BEM classes for items in the form.
+  // Sorted keys.
+  $child_keys = Element::children($form, TRUE);
+  $last_key = NULL;
+  $child_before_actions_key = NULL;
+
+  foreach ($child_keys as $child_key) {
+    if (!empty($form[$child_key]['#type'])) {
+      if ($form[$child_key]['#type'] === 'actions') {
+        // We need the key of the element that precedes the actions element.
+        $child_before_actions_key = $last_key;
+        $form[$child_key]['#attributes']['class'][] = 'views-exposed-form__item';
+        $form[$child_key]['#attributes']['class'][] = 'views-exposed-form__item--actions';
+      }
+
+      if (!in_array($form[$child_key]['#type'], ['hidden', 'actions'])) {
+        $form[$child_key]['#wrapper_attributes']['class'][] = 'views-exposed-form__item';
+        $last_key = $child_key;
+      }
+    }
+  }
+
+  if ($child_before_actions_key) {
+    // Add a modifier class to the item that precedes the form actions.
+    $form[$child_before_actions_key]['#wrapper_attributes']['class'][] = 'views-exposed-form__item--preceding-actions';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nc_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Provides theme suggestion for input templates based on form ID.
+  foreach (Element::children($form) as $key) {
+    $form[$key]['#attributes']['data-twig-suggestion'] = $form['#id'];
+  }
+  $form['actions']['submit']['#attributes']['data-twig-suggestion'] = $form['#id'];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() to suggest templates based on #theme suggestions.
+ */
+function nc_theme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  // Get the form element.
+  $form_element = $variables['element'];
+
+  // Check if the form element has #theme suggestions.
+  if (!empty($form_element['#theme'])) {
+    $theme_suggestions = is_array($form_element['#theme']) ? $form_element['#theme'] : [$form_element['#theme']];
+    // Loop through each #theme suggestion.
+    foreach ($theme_suggestions as $theme_suggestion) {
+      // Add a template suggestion based on each #theme suggestion.
+      $suggestions[] = 'form__' . str_replace('-', '_', $theme_suggestion);
+    }
+  }
+
+  // Check if this is a Layout Builder form.
+  if (!empty($variables['element']['#id']) && strpos($variables['element']['#id'], 'layout-builder-') !== FALSE) {
+    // Add a generic suggestion for layout-builder-form.html.twig.
+    $suggestions[] = 'form__layout_builder_form';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_input_alter().
+ *
+ * To provide theme suggestion for input templates based on form ID.
+ */
+function nc_theme_theme_suggestions_input_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+  if (isset($element['#attributes']['data-twig-suggestion'])) {
+    $suggestion_suffix = str_replace(['-'], '_', $element['#attributes']['data-twig-suggestion']);
+    $suggestions[] = 'input__' . $element['#type'] . '__' . $suggestion_suffix;
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for input.
+ */
+function nc_theme_preprocess_input(&$variables) {
+  if (
+    !empty($variables['element']['#title_display']) &&
+    $variables['element']['#title_display'] === 'attribute' &&
+    !empty((string) $variables['element']['#title'])
+  ) {
+    $variables['attributes']['title'] = (string) $variables['element']['#title'];
+  }
+
+  $type_api = $variables['element']['#type'];
+  $type_html = $variables['attributes']['type'];
+  $text_types_html = [
+    'text',
+    'email',
+    'tel',
+    'number',
+    'search',
+    'password',
+    'date',
+    'time',
+    'file',
+    'color',
+    'datetime-local',
+    'url',
+    'month',
+    'week',
+  ];
+
+  if (in_array($type_html, $text_types_html)) {
+    $variables['attributes']['class'][] = 'form-element';
+    $variables['attributes']['class'][] = Html::getClass('form-element--type-' . $type_html);
+    $variables['attributes']['class'][] = Html::getClass('form-element--api-' . $type_api);
+
+    if (!empty($variables['element']['#autocomplete_route_name'])) {
+      $variables['autocomplete_message'] = t('Loading…');
+    }
+  }
+
+  if (in_array($type_html, ['checkbox', 'radio'])) {
+    $variables['attributes']['class'][] = 'form-boolean';
+    $variables['attributes']['class'][] = Html::getClass('form-boolean--type-' . $type_html);
+  }
+
+  // Handle Search Input.
+  if (!empty($variables['attributes']['id']) && $variables['attributes']['id'] == 'edit-keywords') {
+    $variables['attributes']['placeholder'] = t('Enter search terms...');
+    $variables['attributes']['class'][] = 'keyword-search-input';
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for textarea.
+ */
+function nc_theme_preprocess_textarea(&$variables) {
+  $variables['attributes']['class'][] = 'form-element';
+  $variables['attributes']['class'][] = 'form-element--type-textarea';
+  $variables['attributes']['class'][] = 'form-element--api-textarea';
+}
+
+/**
+ * Implements template_preprocess_HOOK() for select.
+ */
+function nc_theme_preprocess_select(&$variables) {
+  if (!empty($variables['element']['#title_display']) && $variables['element']['#title_display'] === 'attribute' && !empty((string) $variables['element']['#title'])) {
+    $variables['attributes']['title'] = (string) $variables['element']['#title'];
+  }
+
+  $variables['attributes']['class'][] = 'form-element';
+  $variables['attributes']['class'][] = $variables['element']['#multiple'] ?
+    'form-element--type-select-multiple' :
+    'form-element--type-select';
+
+  if (in_array('block-region-select', $variables['attributes']['class'])) {
+    $variables['attributes']['class'][] = 'form-element--extrasmall';
+  }
+}
+
+/**
+ * Implements template_preprocess_filter_caption() for captions.
+ */
+function nc_theme_preprocess_filter_caption(&$variables) {
+  $caption_markup = $variables['node'];
+  preg_match('~data-view-mode="(.*?)"~', $caption_markup, $caption_viewmode_attribute);
+
+  // Entity Embed.
+  if (isset($caption_viewmode_attribute[1])) {
+    if ($caption_viewmode_attribute[1] == NULL) {
+      preg_match('~data-entity-embed-display="(.*?)"~', $caption_markup, $caption_viewmode_attribute);
+      $view_mode = Html::cleanCssIdentifier($caption_viewmode_attribute[1], [
+        ' ' => '-',
+        '_' => '-',
+        '/' => '-',
+        '[' => '-',
+        ']' => '-',
+        ':' => '-',
+        '.' => '-',
+
+        // Unset entity embed class naming convention in favour of
+        // Drupal Media Library.
+        'view-mode-media-' => '',
+      ]);
+    }
+
+    // Drupal Media Library.
+    else {
+      $view_mode = Html::cleanCssIdentifier($caption_viewmode_attribute[1], [
+        ' ' => '-',
+        '_' => '-',
+        '/' => '-',
+        '[' => '-',
+        ']' => '-',
+        ':' => '-',
+        '.' => '-',
+      ]);
+    }
+
+    // If caption media has a view mode, add it as a class.
+    if (!empty($view_mode)) {
+      if (!empty($variables['classes'])) {
+        $variables['classes'] = $variables['classes'] . ' media--view-mode-' . $view_mode;
+      }
+      else {
+        $variables['classes'] = 'media--view-mode-' . $view_mode;
+      }
+    }
+  }
+}
+
+/**
+ * Function to search through menu items and find the active item.
+ */
+function find_active_item(&$array) {
+  $active_trail_found = FALSE;
+
+  foreach ($array['below'] as $value) {
+    // If item is part of the active trail search its children for another
+    // active trail item.
+    if ($value['in_active_trail']) {
+      $active_trail_found = TRUE;
+      find_active_item($value);
+    }
+  }
+
+  // If no active trail item is found in the child items, this is the last item
+  // in the depth of the active trail, therefor this is the active item.
+  if (!$active_trail_found) {
+    $array['is_active'] = TRUE;
+  }
+}
+
+/**
+ * Implements template_preprocess_links() for the Language block.
+ */
+function nc_theme_preprocess_links__language_block(&$variables) {
+  foreach($variables['links'] as &$link) {
+    if ($link['link']['#title'] == 'English') {
+      $link['link']['#title'] = t('<span class="short" aria-hidden="true">En</span><span class="visually-hidden">English</span>');
+    }
+    else if ($link['link']['#title'] == 'French') {
+      $link['link']['#title'] = t('<span class="short" aria-hidden="true">Fr</span><span class="visually-hidden">Français</span>');
+    }
+  }
+}

@@ -1,0 +1,20 @@
+
+
+// ++++++++++ Dropdowns
+
+.dropdown-item {
+  --#{$prefix}dropdown-item-border-radius: 0;
+  white-space: normal;
+}
+
+
+// Hover Dropdowns
+
+.dropdown-menu-hover .dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu-hover .dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}

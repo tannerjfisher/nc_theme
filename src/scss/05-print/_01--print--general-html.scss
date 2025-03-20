@@ -1,0 +1,204 @@
+
+
+// ++++++++++ General HTML (PRINT)
+
+@media print {
+
+  // ===== All
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    text-shadow: none !important;
+  }
+
+  * {
+    font-size: 10pt !important;
+    line-height: 16pt !important;
+  }
+
+
+  // ===== Tables -- http://css-discuss.incutio.com/wiki/Printing_Tables
+
+  table {
+    border: 1px solid #000 !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+
+    * {
+      border-color: #000 !important;
+      max-width: 100% !important;
+    }
+
+    caption {
+      border-color: #000;
+      border-style: solid;
+      border-width: 1px 1px 0;
+    }
+
+    thead {
+      break-inside: auto;
+      display: table-header-group !important;
+    }
+
+    tfoot {
+      display: table-row-group !important;
+    }
+
+    tr {
+      border-bottom: 1px solid #ebebeb !important;
+      page-break-inside: avoid;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    th:not(:last-child) {
+      border-right: 1px solid #000;
+    }
+
+    td:not(:last-child) {
+      border-right: 1px solid #000;
+    }
+
+    span {
+      display: inline-block !important;
+      max-width: 100% !important;
+    }
+  }
+
+
+  // ===== HTML & Body
+
+  html,
+  body {
+    // @include reset--font;
+    // font-family: Georgia, ‘Times New Roman’, serif;
+    font-size: 10pt;
+    line-height: 16pt;
+  }
+
+  body {
+    padding: 1em;
+  }
+
+
+  // ===== Headings
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+    break-inside: avoid;
+    display: block !important;
+    margin-bottom: $paragraph-margin-bottom;
+    margin-top: map-get($spacers, 7);
+    page-break-after: avoid;
+    text-indent: 0 !important;
+    width: 100%;
+  }
+
+  h1,
+  #page-title,
+  h1 *,
+  #page-title * {
+    font-size: 22pt !important;
+    font-weight: bold;
+    line-height: 28pt !important;
+  }
+
+  h2,
+  h2 * {
+    font-size: 18pt !important;
+    font-weight: bold;
+    line-height: 24pt !important;
+  }
+
+  h3,
+  h3 * {
+    font-size: 16pt !important;
+    font-weight: bold;
+    line-height: 20pt !important;
+  }
+
+  h4,
+  h4 * {
+    font-size: 14pt !important;
+    font-weight: bold;
+    line-height: 18pt !important;
+  }
+
+  h5,
+  h5 * {
+    font-size: 12pt !important;
+    font-weight: bold;
+    line-height: 16pt !important;
+  }
+
+  h6,
+  h6 * {
+    font-weight: bold;
+  }
+
+
+  // ===== Strong
+
+  strong {
+    font-weight: $font-weight-bold;
+  }
+
+
+  // ===== Links
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+
+  // ===== Text
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+
+  // ===== Images
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+
+  // ===== Block Quotes
+
+  pre,
+  blockquote {
+    font-size: 12pt;
+    font-weight: $font-weight-bold !important;
+    margin-bottom: map-get($spacers, 5) !important;
+    margin-top: map-get($spacers, 5) !important;
+    page-break-inside: avoid;
+
+    * {
+      font-size: 12pt;
+    }
+  }
+
+
+  // ===== Form
+
+  form {
+    display: block !important;
+  }
+}

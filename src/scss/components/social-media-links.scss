@@ -1,0 +1,225 @@
+
+@import '../init';
+@import '../vendors';
+
+// ++++++++++ Footer social media
+
+.block-social-media-links {
+  display: flex;
+
+
+  // ===== Social Icons Container
+
+  .social-media-links--platforms {
+    @include reset--list();
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: map-get($spacers, 4);
+
+    @include media-breakpoint-up(lg) {
+      gap: map-get($spacers, 5);
+    }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--bs-focus-ring-box-shadow);
+    }
+  }
+
+
+  // ===== Icons
+
+  .social-media-links--platforms > li {
+    display: flex;
+    flex: 0 1 auto;
+    position: relative;
+
+    a {
+      padding: map-get($spacers, 2);
+      color: $white;
+      line-height: 1;
+      position: relative;
+      text-decoration: none;
+
+      &::before {
+        font-size: 1.5rem;
+        transition: all 0.2s;
+      }
+
+      &::after {
+        display: block;
+        left: 50%;
+        margin-top: .4375rem;
+        opacity: 0.6;
+        position: absolute;
+        top: 3rem;
+        transform: translateX(-50%);
+      }
+
+      &:hover {
+        &::before {
+          opacity: 0.6;
+        }
+      }
+
+      &:focus-visible {
+        outline: 0;
+        box-shadow: var(--bs-focus-ring-box-shadow);
+      }
+    }
+
+
+    // ===== Icon Classes
+
+    .social-media-link-icon--rss {
+      &::before {
+        @include icon($icon-rss);
+      }
+    }
+
+    .social-media-link-icon--email {
+      &::before {
+        @include icon($icon-envelope-o);
+      }
+
+      path {
+        display: none;
+      }
+    }
+
+    .social-media-link-icon--youtube_channel {
+      &::before {
+        @include icon($icon-youtube-play);
+      }
+    }
+
+    .social-media-link-icon--website {
+      &::before {
+        @include icon($icon-globe);
+      }
+    }
+
+    .social-media-link-icon--instagram {
+      &::before {
+        @include icon($icon-instagram);
+      }
+    }
+
+    .social-media-link-icon--vimeo {
+      &::before {
+        @include icon($icon-vimeo);
+      }
+    }
+
+    .social-media-link-icon--github {
+      &::before {
+        @include icon($icon-github);
+      }
+    }
+
+    .social-media-link-icon--gitlab {
+      &::before {
+        @include icon($icon-gitlab);
+      }
+    }
+
+    .social-media-link-icon--bitbucket {
+      &::before {
+        @include icon($icon-bitbucket);
+      }
+    }
+
+    .social-media-link-icon--drupal {
+      &::before {
+        @include icon($icon-drupal);
+      }
+    }
+
+    .social-media-link-icon--tumblr {
+      &::before {
+        @include icon($icon-tumblr);
+      }
+    }
+
+    .social-media-link-icon--contact {
+      &::before {
+        @include icon($icon-phone);
+      }
+    }
+
+    .social-media-link-icon--behance {
+      &::before {
+        @include icon($icon-behance);
+      }
+    }
+
+    .social-media-link-icon--flickr {
+      &::before {
+        @include icon($icon-flickr);
+      }
+    }
+
+    .social-media-link-icon--linkedin {
+      &::before {
+        @include icon($icon-linkedin);
+      }
+    }
+
+    .social-media-link-icon--twitter,
+    .social-media-link-icon--x,
+    .social-media-link-icon--x-twitter {
+      &::before {
+        @include icon($icon-x);
+      }
+    }
+
+    .social-media-link-icon--xing {
+      &::before {
+        @include icon($icon-xing);
+      }
+    }
+
+    .social-media-link-icon--youtube {
+      &::before {
+        @include icon($icon-youtube-play);
+      }
+    }
+
+    .social-media-link-icon--pinterest {
+      &::before {
+        @include icon($icon-pinterest);
+      }
+    }
+
+    .social-media-link-icon--whatsapp {
+      &::before {
+        @include icon($icon-whatsapp);
+      }
+    }
+
+    .social-media-link-icon--vkontakte {
+      &::before {
+        @include icon($icon-vk);
+      }
+    }
+
+    .social-media-link-icon--facebook {
+      &::before {
+        @include icon($icon-facebook);
+      }
+    }
+
+    .social-media-link-icon--googleplus {
+      &::before {
+        @include icon($icon-google-plus);
+      }
+    }
+
+    .social-media-link-icon--slideshare {
+      &::before {
+        @include icon($icon-slideshare);
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+
+
+// ++++++++++ ed11y accessibility tool element
+
+ed11y-element-panel {
+  opacity: 0; // Hides the tool overlay by default so that the icons do not display before its css loads in the shadow DOM.
+}

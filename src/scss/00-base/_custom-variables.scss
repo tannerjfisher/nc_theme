@@ -1,0 +1,65 @@
+
+
+/* Styleguide
+ * ----------------------------------------------- */
+:root {
+
+  // Body Font Size (Base font size)
+  @include media-breakpoint-down(md) {
+    --#{$prefix}body-font-size: #{$font-size-base-mobile};
+  }
+
+  // Body Color (Lighter)
+  --#{$prefix}body-color-lighter: #{$body-color-lighter};
+
+  // Focus Box Shadows
+  --#{$prefix}focus-ring-box-shadow: #{$focus-ring-box-shadow};
+
+  // ===== Links
+  --#{$prefix}link-underline-offset: #{$link-underline-offset};
+
+
+  // Legacy
+
+
+  --nc-captions: #{$gray-500};
+  --nc-counters: #{$gray-500}; // List style markers (Numbered)
+  --nc-bullets: #{$gray-500}; // List style markers (Bullets)
+
+  --nc-quotes: #{$gray-900};
+  --nc-quote-icon-color: #{$gray-200};
+  --nc-quotes-attribution: #{$gray-500};
+  --nc-quote-borders: #{$gray-200};
+
+  --nc-pre-code: #{$gray-200};
+  --nc-pre-bg: #{$gray-800};
+
+  --nc-image-ratio-x: 3;
+  --nc-image-ratio-y: 2;
+}
+
+
+// ===== Dark Mode Variables
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    // Focus Box Shadows
+    --#{$prefix}focus-ring-box-shadow: #{$focus-ring-box-shadow-light};
+  }
+}
+
+
+// ===== Layout Variables
+
+:root {
+  --#{$prefix}layout-spacer: #{$layout-spacer};
+}
+
+
+// ===== Forms
+
+:root {
+  --#{$prefix}form-fieldset-padding: #{$form-fieldset-padding};
+  --#{$prefix}form-fieldset-legend-font-size: #{$form-fieldset-legend-font-size};
+  --#{$prefix}form-fieldset-legend-font-weight: #{$form-fieldset-legend-font-weight};
+}

@@ -1,0 +1,50 @@
+
+
+// ++++++++++ General Classes (PRINT)
+
+@media print {
+
+  // ===== No Print (Reusable Class)
+
+  .no-print {
+    display: none !important;
+  }
+
+
+  // ===== Main Canvas (Important so that the page does not break in the middle of a line of text)
+
+  .dialog-off-canvas-main-canvas {
+    display: block !important;
+    min-height: 0 !important;
+    padding-top: 0 !important;
+  }
+
+
+  // ===== General Containers
+
+  .container,
+  .region,
+  .block {
+    display: block !important;
+    margin: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+
+  // ===== Table Container
+
+  .table-container {
+    max-width: 100% !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+
+  // ===== Content Section
+
+  #main {
+    clear: both;
+    padding-top: map-get($spacers, 7) !important;
+  }
+}

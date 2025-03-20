@@ -1,0 +1,217 @@
+
+@use "sass:color";
+
+@import '../init';
+
+// ++++++++++ Layout Builder UI Overrides
+
+// ===== Content Prefix (Page Title on layout edit pages)
+
+.layout-edit .region-content-prefix {
+  padding-bottom: 0;
+}
+
+// ===== Form
+
+.layout-builder-form {
+
+  .form-item {
+    margin-bottom: 0;
+  }
+
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map-get($spacers, 4);
+    margin: map-get($spacers, 7) 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+
+  // ===== Moderation
+
+  .field--name-moderation-state {
+    margin-bottom: 0;
+
+    > .form-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .form-item {
+      flex: 0 0 auto;
+      margin-right: map-get($spacers, 4);
+    }
+
+    // Current Moderation State
+
+    .form-item-moderation-state-0-current {
+      label {
+        display: block;
+        margin-bottom: map-get($spacers, 4);
+      }
+
+      .form-item--content {
+        line-height: 1.5;
+        padding: map-get($spacers, 4) map-get($spacers, 5);
+        background-color: tint($success, 80%);
+        border: 1px solid $success;
+        color: color.adjust($success, $lightness: -60%);
+      }
+    }
+
+    // Change To Moderation State
+
+    .form-item-moderation-state-0-state {
+      label {
+        display: block;
+        margin-bottom: map-get($spacers, 4);
+      }
+    }
+  }
+
+
+  // ===== Vertical Tabs
+
+  .form-type-vertical-tabs {
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    .visually-hidden {
+      height: 0 !important;
+    }
+
+    .vertical-tabs {
+      border: 0;
+
+      details {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+      }
+
+      summary {
+        display: none;
+      }
+    }
+
+    // Vertical Tabs Menu
+
+    .vertical-tabs__panes {
+      flex: 1 1 100%;
+      border: 1px solid #ccc;
+    }
+
+    .vertical-tabs__menu {
+      font-size: 1rem;
+
+      .vertical-tabs__menu-item {
+        margin-right: -1px;
+        z-index: 1;
+      }
+
+      .vertical-tabs__menu-item.is-selected {
+        border-right: 1px solid $white;
+      }
+    }
+
+    summary::-webkit-details-marker {
+      display:none;
+    }
+
+    // Revision Info Item
+
+    .form-item-revision {
+      flex-wrap: wrap;
+
+      label {
+        flex: 1 1 100%;
+      }
+
+      .description {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+
+// ===== Discard Changes form
+
+.layout-builder-discard-changes {
+  margin-top: map-get($spacers, 7);
+
+  .form-actions {
+    margin-top: map-get($spacers, 5);
+
+    .button:not(:last-child) {
+      margin-right: map-get($spacers, 4);
+    }
+  }
+}
+
+
+// ===== Layout Builder Regions in Editor UI
+
+// Split layouts
+.layout-split .layout-builder__region {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  > * {
+
+  }
+}
+
+
+// ===== Layout Builder Blocks in Editor UI
+
+.layout-builder-block {
+  padding: 0;
+  background-color: transparent;
+  margin-bottom: map-get($spacers, 7);
+
+  &:nth-last-child(2) {
+    margin-bottom: map-get($spacers, 4);
+  }
+}
+
+// Blocks with `height 100%` set.
+
+.layout-builder-block.h-100 {
+  height: auto !important;
+}
+
+.layout-split .layout-builder__region > .h-100 {
+  flex: 1 0 auto;
+}
+
+
+// ===== Background Colour Modifiers
+
+.bg-dark {
+  // "Add Block" button
+  .layout-builder__add-block {
+    background-color: var(--#{$prefix}secondary-bg);
+
+    a {
+      &:hover {
+        color: var(--#{$prefix}link-hover-color);
+      }
+    }
+  }
+
+  // Preview placeholder text
+  .layout-builder-block__content-preview-placeholder-label {
+    color: var(--#{$prefix}body-color);
+  }
+}

@@ -1,0 +1,11 @@
+
+// +++++++++ Content Prefix
+// -----------------------------------------------
+
+.region-content-prefix {
+  padding-bottom: 2.5rem;
+
+  > * {
+    flex-basis: 100%;
+  }
+}

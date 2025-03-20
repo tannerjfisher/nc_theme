@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Alert Banner Component.
+ *
+ * A flexible, dismissible alert banner for displaying important notifications, warnings, or emergency messages.
+ * Supports Bootstrap utility classes and responsive behavior.
+ *
+ * Props:
+ * - `id` (string) - Unique identifier for the alert.
+ * - `label` (string) - The main heading of the alert.
+ * - `alert_level` (string) - Defines the type of alert (`emergency`, `warning`, `information`).
+ * - `content` (render array) - The message body of the alert.
+ * - `link` (object, optional) - Call-to-action (CTA) link.
+ *   - `link.title` (string) - The link text.
+ *   - `link.uri` (string) - The link destination.
+ *   - `link.options` (array) - Additional attributes for the link.
+ * - `persists` (integer) - Determines if the alert is dismissible (`0 = dismissible`, `1 = persistent`).
+ * - `has_container` (boolean) - Wraps content inside a Bootstrap `.container`. Set to false if using the alert banner in the page layout.
+ *
+ * Behavior:
+ * - If `persists` is `0`, the alert includes a dismiss button.
+ * - JavaScript handles dismiss functionality and stores it in cookies.
+ * - Responsive layout:
+ *   - The CTA link is inside `.content` on mobile (`d-lg-none`).
+ *   - The CTA link moves to `.additional-links` on large screens (`d-lg-inline-block`).
+ * - Icons dynamically change based on `alert_level`.
+ *
+ * Accessibility:
+ * - Uses `aria-hidden="false"` and `role="alert"` for screen readers.
+ * - Dismiss button includes `aria-pressed` and `aria-controls` attributes.
+ */
+#}
+
+{% set classes = [
+  'alert-banner',
+  alert_level,
+  'pt-6',
+  link.title ? 'pb-7' : 'pb-6',
+  link.title ? 'pb-lg-6',
+  not has_container ? 'ps-6 pe-6 mb-9',
+] %}
+
+{% if link.title %}
+  {% set uri = link.uri %}
+  {% set link_attributes = create_attribute(link.options.attributes) %}
+  {% set link_content %}
+    <span class="text">{{ link.title }}</span>
+    {% if 'entity:' in uri %}
+      {% include '@nc_theme/SVG/icon--arrow-right.svg.twig' %}
+    {% endif %}
+  {% endset %}
+{% endif %}
+
+<div class="{{ classes|join(' ') }}" id="alert-{{ id }}" aria-hidden="false" role="alert" data-bs-theme="{{ alert_level }}">
+  {% if has_container %}
+  <div class="container">
+  {% endif %}
+
+    <div class="row gx-6 gy-5 justify-content-between">
+      <div class="icon-column col col-auto d-flex align-items-center">
+        {% if alert_level == 'emergency' %}{% include '@nc_theme/SVG/icon--exclamation-triangle-fill.svg.twig' %}{% endif %}
+        {% if alert_level == 'warning' %}{% include '@nc_theme/SVG/icon--exclamation-circle-fill.svg.twig' %}{% endif %}
+        {% if alert_level == 'information' %}{% include '@nc_theme/SVG/icon--info-circle-fill.svg.twig' %}{% endif %}
+      </div>
+
+      <div class="content {% if not persists or not has_container %}col-12{% else %}col{% endif %} col-lg order-last order-lg-2 d-flex flex-column gap-5 align-items-start justify-content-center">
+        {{ title_prefix }}
+        <p{{ title_attributes.addClass('heading', 'h4', 'font-size-sm', 'mt-0', 'mb-0') }}>
+          <strong>{{ label }}</strong>
+        </p>
+        {{ title_suffix }}
+
+        {{ content }}
+
+        {% if link.title %}
+          {{ link(link_content, uri, link_attributes.addClass('more-link', 'd-inline-block', 'd-lg-none', 'h5', 'mt-0', 'mb-0')) }}
+        {% endif %}
+      </div>
+
+      {% if link.title or not persists %}
+        <div class="additional-links col col-auto order-lg-3 {% if persists %}d-none d-lg-block{% endif %}">
+          <div class="controls d-flex align-items-center gap-6">
+            {% if link.title %}
+              {{ link(link_content, uri, link_attributes.removeClass('d-inline-block', 'd-lg-none', 'mt-5').addClass('d-none', 'd-lg-inline-block')) }}
+            {% endif %}
+
+            {% if not persists %}
+              <button class="dismiss btn btn-link d-flex align-items-center" type="button" name="dismiss" aria-label="{{ 'Dismiss Alert'|t }}" aria-pressed="false" aria-controls="alert-{{ node.id }}">
+                {% include '@nc_theme/SVG/icon--x-lg.svg.twig' %}
+              </button>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+  {% if has_container %}
+  </div>
+  {% endif %}
+</div>

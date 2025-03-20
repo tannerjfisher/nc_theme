@@ -1,0 +1,16 @@
+
+// Icomoon
+$icomoon-font-path: '../fonts/icomoon-v1.0/fonts';
+$use-icon-font: true; // Used by custom `icon()` mixin.
+@import '../fonts/icomoon-v1.0/variables';
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?nz5ktb') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?nz5ktb') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?nz5ktb##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}

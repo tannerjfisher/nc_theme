@@ -1,0 +1,13 @@
+
+
+// +++++++++++ Footer Nav (Primary)
+
+.menu--footer {
+  .nav-item {
+    flex: 0 0 auto;
+
+    @include media-breakpoint-down(lg) {
+      flex: 1 1 100%;
+    }
+  }
+}

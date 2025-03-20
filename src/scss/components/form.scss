@@ -1,0 +1,132 @@
+
+@import '../init';
+
+// ++++++++++ Forms
+// Form styling attached only to full forms (e.g Webform)
+
+
+// ===== Form
+
+.form {
+  $xxl-width: map-get($container-max-widths, xxl);
+  max-width: calc(#{$xxl-width} / 1.5); // Prevents forms from getting too wide.
+  width: 100%; // Allows it to scale on smaller screens.
+}
+
+
+// ===== Fieldset
+
+.fieldset {
+  margin-top: 0;
+
+  .webform-flexbox {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // Remove the extra bottom margin if webform flexbox in a fieldset wrapper
+  .fieldset-wrapper .webform-flexbox:last-child {
+    margin-bottom: - $form-item-margin-bottom;
+  }
+}
+
+// Default (visually-hidden label)
+.fieldset-default {
+  legend {
+    margin-bottom: 0;
+  }
+}
+
+// Bordered default style
+.fieldset-standard {
+  border: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+  padding: var(--#{$prefix}form-fieldset-padding);
+
+  > legend {
+    font-size: var(--#{$prefix}form-fieldset-legend-font-size);
+    font-weight: var(--#{$prefix}form-fieldset-legend-font-weight);
+    float: none;
+    margin-bottom: 0;
+    padding: 0 2px;
+    width: auto;
+
+    .fieldset-legend {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+
+// ===== Checkbox/Radio Items
+// Only applies to full forms
+
+.form .form-check {
+  padding-left: $form-check-padding-start-large;
+}
+
+.form .form-check-input {
+  width: $form-check-input-width-large;
+  height: $form-check-input-width-large;
+  margin-top: ($line-height-base - $form-check-input-width-large) * .5; // line-height minus check height
+  margin-left: $form-check-padding-start-large * -1;
+}
+
+
+// ===== Range
+
+.form-range {
+  border-color: transparent;
+}
+
+
+// ===== Details
+
+.form-element + .details {
+  margin-top: map-get($spacers, 3);
+}
+
+
+// ===== Description
+
+.description {
+  display: block;
+  margin-bottom: map-get($spacers, 3);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+// ===== Inline form elements
+
+.form-item .container-inline {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+  row-gap: .5em;
+  margin: 0;
+
+  > div {
+    margin-bottom: 0;
+  }
+}
+
+.form--inline {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+  row-gap: $form-item-margin-bottom;
+  margin-bottom: map-get($spacers, 3);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-item {
+    float: none;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+}

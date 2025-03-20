@@ -1,0 +1,142 @@
+
+
+// ++++++++++ Details with Summary Elements
+
+details:not(.no-style) {
+  margin-top: $paragraph-margin-bottom;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid $gray-300;
+  border-radius: 0;
+  margin-top: 0;
+  padding: 0;
+  transition: height 300ms cubic-bezier(0.4, 0.01, 0.165, 0.99);
+
+  > summary,
+  .details-wrapper {
+    padding: 1em 2.25em 1em .5em;
+
+    @include media-breakpoint-up(lg) {
+      padding: 1em 3.1em 1em 1em;
+    }
+  }
+
+  > summary {
+    color: $gray-900;
+    display: block;
+    font-weight: $font-weight-normal;
+    position: relative;
+    text-decoration: none;
+    transition: background-color 0.2s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      background-size: 50%, 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: $white;
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      font-size: 1em;
+      position: absolute;
+      right: 1.125em;
+      top: 50%;
+      transform: translate(50%, -50%) rotate(0deg);
+
+      @include media-breakpoint-up(lg) {
+        right: 1.55em;
+      }
+    }
+
+    &::before {
+      background-color: $secondary;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ctitle%3Eicon--plus--white%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpolygon fill='" + str-replace(#{$white}, '#', '%23') + "' fill-rule='nonzero' points='11.82 6.82 6.82 6.82 6.82 11.82 5.18 11.82 5.18 6.82 0.18 6.82 0.18 5.18 5.18 5.18 5.18 0.18 6.82 0.18 6.82 5.18 11.82 5.18'%3E%3C/polygon%3E%3C/g%3E%3C/svg%3E");
+      opacity: 1;
+      transition: all 0.2s;
+    }
+
+    &::after {
+      background-color: $gray-500;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 2'%3E%3Ctitle%3Eicon--minus--white%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpolygon fill='" + str-replace(#{$white}, '#', '%23') + "' fill-rule='nonzero' points='11.82 1.82 0.18 1.82 0.18 0.18 11.82 0.18'%3E%3C/polygon%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0;
+      transform: translate(50%, -50%) rotate(90deg);
+      transition: all 0.2s;
+    }
+  }
+
+
+  // ===== Accordion Content
+
+  .details-wrapper {
+    margin-bottom: 1.7777777778em;
+    padding-right: .5em;
+
+    @include media-breakpoint-up(lg) {
+      padding-right: 1em;
+    }
+  }
+
+
+  // ===== Accordion OPEN
+
+  &[open] {
+    > summary {
+      background-color: $gray-200;
+
+      &::before {
+        opacity: 0;
+        transform: translate(50%, -50%) rotate(90deg);
+      }
+
+      &::after {
+        opacity: 1;
+        transform: translate(50%, -50%) rotate(180deg);
+      }
+    }
+  }
+
+
+  // ===== Sibling Details Elements
+
+  & + details {
+    margin-top: 0;
+  }
+
+
+  // ===== Elements After Details
+
+  & + p {
+    margin-top: $paragraph-margin-bottom;
+  }
+}
+
+
+// ++++++++++ Print
+
+@media print {
+  details {
+    summary {
+      font-size: 16pt !important;
+      font-weight: $font-weight-bold;
+      line-height: 20pt !important;
+    }
+  }
+}
+
+
+// ++++++++++ Focus Handling
+
+details {
+  summary {
+    &:focus {
+      @include focus-ring();
+    }
+  }
+}
